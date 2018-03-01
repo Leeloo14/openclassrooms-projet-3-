@@ -1,7 +1,7 @@
 <?php
 
 // Chargement des classes
-require_once('model/PostDao.phprequire_once('model/CommentDao.php
+require_once('model/PostsDao.phprequire_once('model/CommentDao.php
 function listPosts()
 {
     $postManager = new \testAnne\blog\Model\PostManager();

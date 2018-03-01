@@ -27,7 +27,7 @@ try {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
-        
+
 
     }
     else {
