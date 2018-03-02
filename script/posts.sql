@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `posts`
+-- Structure de la table `post`
 --
 
 DROP TABLE IF EXISTS `posts`;
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `posts`
+-- Déchargement des données de la table `post`
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `creation_date`, `modif_date`) VALUES

@@ -9,7 +9,7 @@
 namespace testAnne\blog\model;
 
 
-class comment
+class Comment
 {
     private $id;
     private $post_id;

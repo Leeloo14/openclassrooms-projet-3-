@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `comments`
+-- Structure de la table `comment`
 --
 
 DROP TABLE IF EXISTS `comments`;
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `comments`
+-- Déchargement des données de la table `comment`
 --
 
 INSERT INTO `comments` (`id`, `post_id`, `author`, `comment`, `comment_date`) VALUES

@@ -1,8 +1,8 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
-<h1>Livre : Billet simple pour l'Alaska de Jean Forteroche</h1>
-<p><a href="index.php">Retour à la liste des épisodes</a></p>
+<h1>Mon super blog !</h1>
+<p><a href="index.php">Retour à la liste des billets</a></p>
 
 <div class="news">
     <h3>
@@ -34,16 +34,12 @@
 <?php
 while ($comment = $comments->fetch())
 {
-
 ?>
-    <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> </p>
+    <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> (<a href="index.php?action=editComment&amp;id=<?= $comment['id'] ?>"> Modifier </a>)</p>
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-
 <?php
 }
 ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
-
-

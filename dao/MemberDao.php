@@ -2,7 +2,7 @@
 
 namespace testAnne\blog\dao;
 
-require_once("./BaseDao.php");
+use testAnne\blog\model\member;
 
 class MemberDao extends BaseDao
 {

@@ -1,31 +1,33 @@
 <?php
 
 // Chargement des classes
-require_once('model/PostsDao.phprequire_once('model/CommentDao.php
+require_once('dao/PostDao.php');
+require_once('dao/CommentDao.php');
+
 function listPosts()
 {
-    $postManager = new \testAnne\blog\Model\PostManager();
-    $posts = $postManager->getPosts();
+    $PostDao = new \testAnne\blog\dao\PostsDao();
+    $posts = $PostDao->getPosts();
 
     require('view/frontend/listPostsView.php');
 }
 
 function post()
 {
-    $postManager = new \testAnne\blog\Model\PostManager();
-    $commentManager = new \testAnne\blog\Model\CommentDao();
+    $PostDao = new testAnne\blog\dao\PostsDao();
+    $CommentDao = new testAnne\blog\dao\CommentDao();
 
-    $post = $postManager->getPost($_GET['id']);
-    $comments = $commentManager->getComments($_GET['id']);
+    $post = $PostDao->getPost($_GET['id']);
+    $comments = $CommentDao->getComments($_GET['id']);
 
     require('view/frontend/postView.php');
 }
 
 function addComment($postId, $author, $comment)
 {
-    $commentManager = new \testAnne\blog\Model\CommentDao();
+    $commentDao = new \testAnne\Blog\dao\CommentDao();
 
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
+    $affectedLines = $commentDao->postComment($postId, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -35,3 +37,24 @@ function addComment($postId, $author, $comment)
     }
 }
 
+function editComment($commentId)
+{
+    $commentDao = new \testAnne\blog\dao\CommentDao();
+
+    $comment = $commentDao->getComment($commentId);
+
+    require('view/frontend/commentView.php');    
+}
+
+function replaceComment($commentId, $comment, $postId)
+{
+    $commentDao = new \testAnne\blog\dao\CommentDao();
+
+    $affectedLines = $commentDao->updateComment($commentId, $comment);
+    if ($affectedLines === false) {
+        throw new Exception('Impossible de modifier le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId);    
+    }
+}

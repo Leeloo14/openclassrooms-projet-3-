@@ -1,4 +1,4 @@
- <?php
+<?php
 /**
  * Created by IntelliJ IDEA.
  * User: anneg
@@ -9,7 +9,7 @@
 namespace testAnne\blog\model;
 
 
-class member
+class Member
 {
     private $id;
     private $login;
@@ -50,4 +50,3 @@ class member
     }
 }
 
-?>

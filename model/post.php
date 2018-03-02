@@ -9,7 +9,7 @@
 namespace testAnne\blog\model;
 
 
-class posts
+class Post
 {
     private $id;
     private $title;
