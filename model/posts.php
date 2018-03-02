@@ -11,37 +11,37 @@ namespace testAnne\blog\model;
 
 class posts
 {
-    private $_id;
-    private $_title;
-    private $_content;
-    private $_creation_date;
-    private $_modif_date;
+    private $id;
+    private $title;
+    private $content;
+    private $creation_date;
+    private $modif_date;
 
     // GETTERS //
 
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     public function getTitle()
     {
-        return $this->_title;
+        return $this->title;
     }
 
     public function getContent()
     {
-        return $this->_content;
+        return $this->content;
     }
 
     public function getCreationDate()
     {
-        return $this->_creation_date;
+        return $this->creation_date;
     }
 
     public function getModifDate()
     {
-        return $this->_modif_date;
+        return $this->modif_date;
     }
 
     // SETTERS //

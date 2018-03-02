@@ -9,39 +9,39 @@
 namespace testAnne\blog\model;
 
 
-class comments
+class comment
 {
-    private $_id;
-    private $_post_id;
-    private $_author;
-    private $_comment;
-    private $_comment_date;
+    private $id;
+    private $post_id;
+    private $author;
+    private $comment;
+    private $comment_date;
 
     // GETTERS //
 
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     public function getPostId()
     {
-        return $this->_post_id;
+        return $this->post_id;
     }
 
     public function getAuthor()
     {
-        return $this->_author;
+        return $this->author;
     }
 
     public function getComment()
     {
-        return $this->_comment;
+        return $this->comment;
     }
 
     public function getCommentDate()
     {
-        return $this->_comment_date;
+        return $this->comment_date;
     }
     // SETTERS //
 

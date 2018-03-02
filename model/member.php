@@ -1,4 +1,4 @@
-<?php
+ <?php
 /**
  * Created by IntelliJ IDEA.
  * User: anneg
@@ -11,25 +11,25 @@ namespace testAnne\blog\model;
 
 class member
 {
-    private $_id;
-    private $_login;
-    private $_pass_md5;
+    private $id;
+    private $login;
+    private $pass_md5;
 
     // Getters //
 
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     public function getLogin()
     {
-        return $this->_login;
+        return $this->login;
     }
 
     public function getPassMd5()
     {
-        return $this->_pass_md5;
+        return $this->pass_md5;
     }
 
     // SETTERS //
