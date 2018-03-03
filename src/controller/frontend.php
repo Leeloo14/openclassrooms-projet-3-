@@ -1,31 +1,30 @@
 <?php
 
-// Chargement des classes
-require_once('dao/PostDao.php');
-require_once('dao/CommentDao.php');
+use \Blog\Dao\PostDao;
+use \Blog\Dao\CommentDao;
 
 function listPosts()
 {
-    $PostDao = new \testAnne\blog\dao\PostsDao();
+    $PostDao = new PostDao(); //You don't need to use the whole namespace
     $posts = $PostDao->getPosts();
 
-    require('view/frontend/listPostsView.php');
+    require('src/view/frontend/listPostsView.php');
 }
 
 function post()
 {
-    $PostDao = new testAnne\blog\dao\PostsDao();
-    $CommentDao = new testAnne\blog\dao\CommentDao();
+    $PostDao = new PostDao();
+    $CommentDao = new CommentDao();
 
     $post = $PostDao->getPost($_GET['id']);
     $comments = $CommentDao->getComments($_GET['id']);
 
-    require('view/frontend/postView.php');
+    require('src/view/frontend/postView.php');
 }
 
 function addComment($postId, $author, $comment)
 {
-    $commentDao = new \testAnne\Blog\dao\CommentDao();
+    $commentDao = new CommentDao();
 
     $affectedLines = $commentDao->postComment($postId, $author, $comment);
 
@@ -39,22 +38,22 @@ function addComment($postId, $author, $comment)
 
 function editComment($commentId)
 {
-    $commentDao = new \testAnne\blog\dao\CommentDao();
+    $commentDao = new CommentDao();
 
     $comment = $commentDao->getComment($commentId);
 
-    require('view/frontend/commentView.php');    
+    require('src/view/frontend/commentView.php');
 }
 
 function replaceComment($commentId, $comment, $postId)
 {
-    $commentDao = new \testAnne\blog\dao\CommentDao();
+    $commentDao = new CommentDao();
 
     $affectedLines = $commentDao->updateComment($commentId, $comment);
     if ($affectedLines === false) {
         throw new Exception('Impossible de modifier le commentaire !');
     }
     else {
-        header('Location: index.php?action=post&id=' . $postId);    
+        header('Location: index.php?action=post&id=' . $postId);
     }
 }

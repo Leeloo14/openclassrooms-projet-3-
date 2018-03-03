@@ -1,0 +1,9 @@
+{
+  "name": "remimichel/openclassrooms-projet-3-",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Blog\\": "src/"
+    }
+  }
+}

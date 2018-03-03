@@ -1,6 +1,6 @@
 <?php
 
-namespace testAnne\blog\dao;
+namespace Blog\Dao;
 
 class BaseDao
 {

@@ -6,7 +6,7 @@
  * Time: 09:19
  */
 
-namespace testAnne\blog\model;
+namespace Blog\Model;
 
 
 class Post

@@ -1,8 +1,6 @@
 <?php
 
-namespace testAnne\blog\dao;
-
-use testAnne\blog\model\comment;
+namespace Blog\Dao;
 
 class CommentDao extends BaseDao
 {
