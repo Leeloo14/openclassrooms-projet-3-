@@ -6,7 +6,7 @@
  * Time: 09:17
  */
 
-namespace testAnne\blog\model;
+namespace Blog\Model;
 
 
 class Comment

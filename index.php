@@ -1,5 +1,6 @@
 <?php
-require('controller/frontend.php');
+require "vendor/autoload.php";
+require('src/controller/frontend.php');
 
 try {
     if (isset($_GET['action'])) {
