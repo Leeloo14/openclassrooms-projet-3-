@@ -1,11 +1,14 @@
 <?php
-require "vendor/autoload.php";
+require_once "vendor/autoload.php";
 require('src/controller/frontend.php');
+
+$loader = new Twig_Loader_Filesystem(__DIR__.'/src/view/frontend');
+$twig = new Twig_Environment($loader, array('cache' => __DIR__.'/cache'));
 
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
-            listPosts();
+            listPosts($twig);
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -52,7 +55,7 @@ try {
 
     }
     else {
-        listPosts();
+        listPosts($twig);
     }
 }
 catch(Exception $e) {
