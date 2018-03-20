@@ -3,30 +3,35 @@
 use \Blog\Dao\PostDao;
 use \Blog\Dao\CommentDao;
 
+/** renvoie la liste de tout les episodes */
 function listPosts()
 {
-    $PostDao = new PostDao(); //You don't need to use the whole namespace
-    $posts = $PostDao->getPosts();
+    $postDao = new PostDao(); //You don't need to use the whole namespace
+    $posts = $postDao->getAllPosts();
+
+
 
     require('src/view/frontend/listPostsView.php');
 }
+
 
 function post()
 {
     $PostDao = new PostDao();
     $CommentDao = new CommentDao();
 
-    $post = $PostDao->getPost($_GET['id']);
-    $comments = $CommentDao->getComments($_GET['id']);
+    $post = $PostDao->getPostById($_GET['id']);
+    $comments = $CommentDao->getAllComments($_GET['id']);
 
     require('src/view/frontend/postView.php');
 }
+
 
 function addComment($postId, $author, $comment)
 {
     $commentDao = new CommentDao();
 
-    $affectedLines = $commentDao->postComment($postId, $author, $comment);
+    $affectedLines = $commentDao->createComment($postId, $author, $comment);
 
     if ($affectedLines === false) {
         throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -36,24 +41,4 @@ function addComment($postId, $author, $comment)
     }
 }
 
-function editComment($commentId)
-{
-    $commentDao = new CommentDao();
 
-    $comment = $commentDao->getComment($commentId);
-
-    require('src/view/frontend/commentView.php');
-}
-
-function replaceComment($commentId, $comment, $postId)
-{
-    $commentDao = new CommentDao();
-
-    $affectedLines = $commentDao->updateComment($commentId, $comment);
-    if ($affectedLines === false) {
-        throw new Exception('Impossible de modifier le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $postId);
-    }
-}

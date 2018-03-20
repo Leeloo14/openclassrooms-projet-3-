@@ -6,25 +6,24 @@
 
 
 <?php
-while ($posts && $data = $posts->fetch()) {
+/* @var $post \Blog\Model\Post */
+foreach ($posts as $post) {
     ?>
   <div class="news">
     <h3>
-        <?= htmlspecialchars($data['title']) ?>
-      <em>le <?= $data['creation_date_fr'] ?></em>
+        <?= htmlspecialchars($post->getTitle()) ?>
+      <em>le <?= $post->getCreationDate() ?></em>
     </h3>
 
     <p>
 
       <br/>
-      <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire l'épisode</a></em>
+      <em><a href="index.php?action=post&amp;id=<?= $post->getId() ?>">Lire l'épisode</a></em>
     </p>
   </div>
     <?php
 }
-if ($posts) {
-    $posts->closeCursor();
-}
+
 ?>
 <?php $content = ob_get_clean(); ?>
 

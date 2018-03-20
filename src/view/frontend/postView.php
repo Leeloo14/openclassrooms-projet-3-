@@ -1,23 +1,25 @@
-<?php $title = htmlspecialchars($post['title']); ?>
 
+<?php require_once('src/dao/PostDao.php'); ?>
 <?php ob_start(); ?>
+
 <h1>Mon super blog !</h1>
 <p><a href="index.php">Retour à la liste des billets</a></p>
 
 <div class="news">
     <h3>
-        <?= htmlspecialchars($post['title']) ?>
-        <em>le <?= $post['creation_date_fr'] ?></em>
+        <?php /* @var $post \Blog\Model\Post */?>
+        <?= htmlspecialchars($post->getTitle())  ?>
+        <em>le <?= $post->getCreationDate() ?></em>
     </h3>
     
     <p>
-        <?= nl2br(htmlspecialchars($post['content'])) ?>
+        <?= nl2br(htmlspecialchars($post->getContent())) ?>
     </p>
 </div>
 
 <h2>Commentaires</h2>
 
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+<form action="index.php?action=addComment&amp;id=<?= $post->getId() ?>" method="post">
     <div>
         <label for="author">Auteur</label><br />
         <input type="text" id="author" name="author" />
@@ -32,11 +34,12 @@
 </form>
 
 <?php
-while ($comment = $comments->fetch())
+/* @var $comment \Blog\Model\Comment */
+foreach ($comments as $comment)
 {
 ?>
-    <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?> (<a href="index.php?action=editComment&amp;id=<?= $comment['id'] ?>"> Modifier </a>)</p>
-    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+    <p><strong><?= htmlspecialchars($comment->getAuthor()) ?></strong> le <?= $comment->getCommentDate()  ?>
+    <p><?= nl2br(htmlspecialchars($comment->getComment())) ?></p>
 <?php
 }
 ?>
