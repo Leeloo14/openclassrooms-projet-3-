@@ -14,8 +14,8 @@ class Post
     private $id;
     private $title;
     private $content;
-    private $creation_date;
-    private $modif_date;
+    private $creationDate;
+    private $modifDate;
 
     function __construct($postData) {
         if (isset($postData['id'])){
@@ -30,12 +30,12 @@ class Post
             $this->content = $postData['content'];
         }
 
-        if (isset($postData['creation_date_fr'])){
-            $this->creation_date = $postData['creation_date_fr'];
+        if (isset($postData['creation_date'])){
+            $this->creationDate = date_create_from_format('Y-m-d h:m:s', $postData['creation_date']);
         }
 
         if (isset($postData['modif_date'])){
-            $this->modif_date = $postData['modif_date'];
+            $this->modifDate = date_create_from_format('Y-m-d h:m:s', $postData['modif_date']);
         }
     }
 
@@ -58,12 +58,12 @@ class Post
 
     public function getCreationDate()
     {
-        return $this->creation_date;
+        return $this->creationDate;
     }
 
     public function getModifDate()
     {
-        return $this->modif_date;
+        return $this->modifDate;
     }
 
     // SETTERS //
@@ -83,14 +83,14 @@ class Post
         $this->content = $content;
     }
 
-    public function setCreationDate($creation_date)
+    public function setCreationDate($creationDate)
     {
-        $this->creation_date = $creation_date;
+        $this->creationDate = $creationDate;
     }
 
-    public function setModifDate($modif_date)
+    public function setModifDate($modifDate)
     {
-        $this->_modif_date = $modif_date;
+        $this->_modifDate = $modifDate;
     }
 }
 

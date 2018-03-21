@@ -1,9 +1,11 @@
 <?php
+
 require_once "vendor/autoload.php";
 require('src/controller/frontend.php');
 
+
 $loader = new Twig_Loader_Filesystem(__DIR__.'/src/view/frontend');
-$twig = new Twig_Environment($loader, array('cache' => __DIR__.'/cache'));
+$twig = new Twig_Environment($loader);
 
 try {
     if (isset($_GET['action'])) {
