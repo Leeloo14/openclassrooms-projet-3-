@@ -9,6 +9,7 @@
 /* @var $post \Blog\Model\Post */
 foreach ($posts as $post) {
     ?>
+
   <div class="news">
     <h3>
         <?= htmlspecialchars($post->getTitle()) ?>

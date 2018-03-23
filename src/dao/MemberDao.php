@@ -10,11 +10,6 @@ class MemberDao extends BaseDao
 	
 	
 	
-	public function create (member $member)
-
-	{
-
-	}
 
 
 
@@ -27,24 +22,6 @@ class MemberDao extends BaseDao
 	}
 
 	
-	public function readall()
-	{
-
-	}
-	
-	public function update (member $member)
-
-	{
-
-	}
-
-	
-
-	public function delete()
-
-	{
-
-	}
 
 
 }
