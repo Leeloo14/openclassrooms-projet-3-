@@ -4,14 +4,12 @@ use \Blog\Dao\PostDao;
 use \Blog\Dao\CommentDao;
 
 /** renvoie la liste de tout les episodes */
-function listPosts()
+function listPosts($template)
 {
     $postDao = new PostDao(); //You don't need to use the whole namespace
     $posts = $postDao->getAllPosts();
-
-
-
-    require('src/view/frontend/listPostsView.php');
+    
+    echo $template->render('listPostsView.html.twig', array('posts' => $posts));
 }
 
 
