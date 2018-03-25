@@ -1,5 +1,3 @@
-
-<?php require_once('src/dao/PostDao.php'); ?>
 <?php ob_start(); ?>
 
 <h1>Mon super blog !</h1>
@@ -7,11 +5,11 @@
 
 <div class="news">
     <h3>
-        
+
         <?= htmlspecialchars($post->getTitle())  ?>
         <em>le <?= $post->getCreationDate() ?></em>
     </h3>
-    
+
     <p>
         <?= nl2br(htmlspecialchars($post->getContent())) ?>
     </p>

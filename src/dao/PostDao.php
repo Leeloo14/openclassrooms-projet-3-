@@ -5,11 +5,10 @@ namespace Blog\Dao;
 use Blog\Model\Post;
 
 
-
 class PostDao extends BaseDao
 {
 
-/** permet de creer un nouvel épisode */
+    /** permet de creer un nouvel épisode */
     public function create($post)
 
     {
@@ -28,44 +27,42 @@ class PostDao extends BaseDao
     }
 
 
-/** renvoie un épisode suivant son id */
+    /** renvoie un épisode suivant son id */
 
     public function getPostById($id)
-   {
-        $db = $this->dbConnect();
-
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ' . $id );
-       
-        $req -> execute();
-
-        $postData =  $req -> fetch();
-        
-        return new Post($postData);
-
-       
-   }
-
-/** renvoie la liste de tout les épisodes */
-
-    public function getAllPosts()
-
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content,modif_date, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+
+        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ' . $id);
+
+        $req->execute();
+
+        $postData = $req->fetch();
+
+        return new Post($postData);
+
+
+    }
+
+    /** renvoie la liste de tout les épisodes */
+
+    public function getAllPosts()
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT * FROM post ORDER BY creation_date DESC LIMIT 0, 5');
         $req->execute();
         $postsDB = $req->fetchAll();
 
         $posts = [];
 
         foreach ($postsDB as $postDB) {
-
             array_push($posts, new Post($postDB));
         }
         return $posts;
     }
 
 
-        /** permet de mettre à jour un épisode */
+    /** permet de mettre à jour un épisode */
     public function update($post)
 
     {
@@ -85,7 +82,7 @@ class PostDao extends BaseDao
 
     }
 
-/** permet de supprimer un épisode */
+    /** permet de supprimer un épisode */
     public function delete($postId)
 
     {
@@ -101,5 +98,3 @@ class PostDao extends BaseDao
     }
 
 }
-
-
