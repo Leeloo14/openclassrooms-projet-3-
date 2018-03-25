@@ -49,7 +49,7 @@ class PostDao extends BaseDao
     public function getAllPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM post ORDER BY creation_date DESC LIMIT 0, 5');
+        $req = $db->prepare('SELECT * FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
         $req->execute();
         $postsDB = $req->fetchAll();
 

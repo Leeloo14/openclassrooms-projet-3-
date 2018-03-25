@@ -9,11 +9,11 @@ function listPosts($template)
     $postDao = new PostDao(); //You don't need to use the whole namespace
     $posts = $postDao->getAllPosts();
     
-    echo $template->render('listPostsView.html.twig', array('posts' => $posts));
+    echo $template->render('list-posts-view.html.twig', array('posts' => $posts));
 }
 
 
-function post()
+function post($template)
 {
     $PostDao = new PostDao();
     $CommentDao = new CommentDao();

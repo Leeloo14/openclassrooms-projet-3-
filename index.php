@@ -4,7 +4,7 @@ require_once "vendor/autoload.php";
 require('src/controller/frontend.php');
 
 
-$loader = new Twig_Loader_Filesystem(__DIR__.'/src/view/frontend');
+$loader = new Twig_Loader_Filesystem(__DIR__.'/src/view');
 $twig = new Twig_Environment($loader);
 
 try {
@@ -14,7 +14,7 @@ try {
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                post();
+                post($twig);
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
