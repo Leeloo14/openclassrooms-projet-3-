@@ -16,8 +16,8 @@ class MemberDao extends BaseDao
 	public function read ($id)
 
 	{
-		
-		
+
+
 
 	}
 

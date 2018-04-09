@@ -12,4 +12,8 @@ class BaseDao
         return $db;
     }
 
+    protected function Q($data){
+        return "'" . $data . "'";
+}
+
 }

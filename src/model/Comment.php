@@ -16,6 +16,7 @@ class Comment
     private $author;
     private $comment;
     private $comment_date;
+    private $signalement;
 
      function __construct($commentData) {
         if (isset($commentData['id'])){
@@ -34,8 +35,13 @@ class Comment
             $this->comment = $commentData['comment'];
         }
 
-        if (isset($commentData['comment_date_fr'])){
-            $this->comment_date = $commentData['comment_date_fr'];
+        if (isset($commentData['comment_date'])){
+
+            $this->comment_date = date_create_from_format('Y-m-d H:i:s', $commentData['comment_date']);
+        }
+
+        if (isset($commentData['signalement'])){
+            $this->signalement = $commentData['signalement'];
         }
     }
 
@@ -65,6 +71,11 @@ class Comment
     {
         return $this->comment_date;
     }
+
+    public function getSignalement()
+    {
+        return $this->signalement;
+    }
     // SETTERS //
 
     public function setId($id)
@@ -91,6 +102,11 @@ class Comment
     public function setCommentDate($comment_date)
     {
         $this->comment_date = $comment_date;
+    }
+
+    public function  setSignalement ($signalement)
+    {
+        $this->signalement = ♥6signalement;
     }
 }
 

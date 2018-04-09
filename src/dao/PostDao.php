@@ -8,7 +8,22 @@ use Blog\Model\Post;
 class PostDao extends BaseDao
 {
 
-    /** permet de creer un nouvel épisode */
+
+
+
+    public function create ($id, $title, $content)
+
+    {
+        $db = $this->dbConnect();
+        $posts = $db->prepare('INSERT INTO posts(id, title, content, comment_date) VALUES(?, ?, ?, NOW())');
+        $affectedLines = $posts->execute(array($id, $title, $content));
+
+        return $affectedLines;
+
+
+    }
+
+    /** permet de creer un nouvel épisode
     public function create($post)
 
     {
@@ -25,7 +40,7 @@ class PostDao extends BaseDao
 
 
     }
-
+*/
 
     /** renvoie un épisode suivant son id */
 
@@ -33,7 +48,7 @@ class PostDao extends BaseDao
     {
         $db = $this->dbConnect();
 
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ' . $id);
+        $req = $db->prepare('SELECT id, title, content, creation_date FROM posts WHERE id = ' . $id);
 
         $req->execute();
 

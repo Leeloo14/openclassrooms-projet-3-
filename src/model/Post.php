@@ -31,11 +31,11 @@ class Post
         }
 
         if (isset($postData['creation_date'])){
-            $this->creationDate = date_create_from_format('Y-m-d h:m:s', $postData['creation_date']);
+            $this->creationDate = date_create_from_format('Y-m-d H:i:s', $postData['creation_date']);
         }
 
         if (isset($postData['modif_date'])){
-            $this->modifDate = date_create_from_format('Y-m-d h:m:s', $postData['modif_date']);
+            $this->modifDate = date_create_from_format('Y-m-d H:i:s', $postData['modif_date']);
         }
     }
 
