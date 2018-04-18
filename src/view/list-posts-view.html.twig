@@ -5,11 +5,14 @@
 {% endblock %}
 
 {% block body %}
+
     <h1>Bienvenue sur le blog de Jean Forteroche</h1>
     <p>Derniers épisodes publiés :</p>
 
     {% for post in posts %}
+
         <div class="news">
+
             <h3>
                 {{ post.title|escape }}
                 <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
@@ -18,11 +21,12 @@
             <p>
                 <em><a href="index.php?action=post&amp;id={{ post.id }}">Lire l'épisode</a></em>
             </p>
+
         </div>
 
 
     {% endfor %}
 
-    <a href="index.php?action=displayPanelAdmin">Connection à l'interface d'administration</a>
+        <a href="index.php?action=displayPanelAdmin">Connection à l'interface d'administration</a>
 
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "template.html.twig" %}
+
+{% block head %}
+    <meta charset="utf-8"/>
+    <title> administration </title>
+{% endblock %}
+
+{% block body %}
+
+    <h2>liste des commentaires signalés</h2>
+
+    <ul>
+
+        {% for comment in comments %}
+
+            <h3>
+
+                <p>
+                    Auteur du commentaire : {{ comment.author|escape }}
+                    <br>
+                    Contenu du commentaire : {{ comment.comment }}
+                    <br>
+                    Motif du signalement : {{ comment.signalement }}
+                </p>
+
+            </h3>
+
+            <p>
+                <em><a href="index.php?action=deleteById&amp;idComment={{ comment.id }}">supprimer le commentaire</a></em>
+            </p>
+
+        {% endfor %}
+
+    </ul>
+
+{% endblock %}

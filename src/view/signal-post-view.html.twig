@@ -8,17 +8,19 @@
 
     <p><a href="index.php">Retour à la liste des billets</a></p>
 
-    <div class="news">
+        <div class="news">
 
-        <h3>
-            {{ post.title|escape }}
-            <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
-        </h3>
+            <h3>
+                {{ post.title|escape }}
+                <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
+            </h3>
 
-        <p>
-            {{ post.content }}
-        </p>
-    </div>
+            <p>
+                {{ post.content }}
+            </p>
+
+        </div>
+
     <h2>Commentaires</h2>
 
     {% for comment in comments %}
@@ -40,12 +42,12 @@
 
 
         {% else %}
+
             <p> {{ comment.author }} le {{ comment.commentDate|date("d/m/Y h:m") }}
             <p>{{ comment.comment }}</p>
 
-
-
         {% endif %}
+
     {% endfor %}
 
 {% endblock %}

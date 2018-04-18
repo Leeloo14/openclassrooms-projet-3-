@@ -17,7 +17,7 @@ class FrontendController
         $this->postDao = new PostDao();
     }
 
-    /** renvoie la liste de tout les episodes */
+    /** renvoi la liste de tout les episodes */
     function listPosts($template)
     {
         $posts = $this->postDao->getAllPosts();
@@ -25,6 +25,7 @@ class FrontendController
         echo $template->render('list-posts-view.html.twig', array('posts' => $posts));
     }
 
+    /** renvoi un épisode */
     function post($template)
     {
         $post = $this->postDao->getPostById($_GET['id']);
@@ -33,7 +34,7 @@ class FrontendController
         echo $template->render('post-view.html.twig', array('comments' => $comments, 'post' => $post));
     }
 
-
+    /** permet d'ajouter un nouveau commentaire */
     function addComment($postId, $author, $comment)
     {
         $affectedLines = $this->commentDao->createComment($postId, $author, $comment);
@@ -45,18 +46,18 @@ class FrontendController
         }
     }
 
-
+    /** permet d'éditer un motif de signalement pour signaler un commentaire */
     function spamEditComment($template)
     {
         $post = $this->postDao->getPostById($_GET['id']);
-
         $comments = $this->commentDao->getPostComments($_GET['id']);
 
 
-        echo $template->render('signal-post-view.html.twig', array('comments' => $comments, 'post' => $post, 'currentCommentId' => $_GET['idComment']));
+        echo $template->render('signal-post-view.html.twig', array('comments' => $comments, 'post' => $post,
+            'currentCommentId' => $_GET['idComment']));
     }
 
-
+    /** permet d'envoyer le motif de signalement */
     function spamComment($postId, $IdComment, $upComment)
     {
         $affectedLines = $this->commentDao->signalComment($IdComment, $upComment);

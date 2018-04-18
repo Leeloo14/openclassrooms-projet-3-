@@ -1,0 +1,34 @@
+{% extends "template.html.twig" %}
+
+{% block head %}
+    <meta charset="utf-8"/>
+    <title> administration </title>
+{% endblock %}
+
+{% block body %}
+
+    <h2>liste des épisodes publiés</h2>
+
+    {% for post in posts %}
+
+        <div class="news">
+
+            <h3>
+                {{ post.title|escape }}
+                <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
+            </h3>
+
+            <p>
+                <em><a href="index.php?action=editPost&amp;id={{ post.id }}">Modifier l'épisode</a>--<em><a href="index.php?action=deletePost&amp;idPost={{ post.id }}">supprimer l'episode</a></em> </em>
+            </p>
+
+        </div>
+
+
+    {% endfor %}
+
+    <ul>
+        <li><a href="index.php?action=displayNewPostAdmin">créer un nouvel épisode</a></li>
+    </ul>
+
+{% endblock %}

@@ -8,42 +8,17 @@ use Blog\Model\Post;
 class PostDao extends BaseDao
 {
 
-
-
-
-    public function create ($id, $title, $content)
+    /** permet de créer un nouvel épisode */
+    public function createPost($title, $content)
 
     {
         $db = $this->dbConnect();
-        $posts = $db->prepare('INSERT INTO posts(id, title, content, comment_date) VALUES(?, ?, ?, NOW())');
-        $affectedLines = $posts->execute(array($id, $title, $content));
-
+        $posts = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(?, ?, NOW())');
+        $affectedLines = $posts->execute(array($title, $content));
         return $affectedLines;
-
-
     }
-
-    /** permet de creer un nouvel épisode
-    public function create($post)
-
-    {
-        $db = $this->dbConnect();
-
-        $req = $db->prepare('INSERT INTO posts (`title`, `content`, `creation_date`, `modif_date`) VALUES (:title, :content, :creation_date, modif_date,)');
-
-        $req->bindValue(':title', $post->getTitle());
-        $req->bindValue(':content', $post->getContent(), PDO::PARAM_INT);
-        $req->bindValue(':creation_date', $post->getCreationDate(), PDO::PARAM_INT);
-        $req->bindValue(':modif_date', $post->getModifDate(), PDO::PARAM_INT);
-
-        $req->execute();
-
-
-    }
-*/
 
     /** renvoie un épisode suivant son id */
-
     public function getPostById($id)
     {
         $db = $this->dbConnect();
@@ -55,12 +30,21 @@ class PostDao extends BaseDao
         $postData = $req->fetch();
 
         return new Post($postData);
+    }
 
+   /** permet de récuperer un épisode */
+    public function getPost($postId)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT id, title, content, creation_date FROM posts WHERE id =' . $postId);
+        $req->execute();
 
+        $postData = $req->fetch();
+
+        return new Post($postData);
     }
 
     /** renvoie la liste de tout les épisodes */
-
     public function getAllPosts()
     {
         $db = $this->dbConnect();
@@ -76,40 +60,27 @@ class PostDao extends BaseDao
         return $posts;
     }
 
-
     /** permet de mettre à jour un épisode */
-    public function update($post)
-
+    public function updatePost($id, $content, $title)
     {
-
         $db = $this->dbConnect();
+        $post = $db->prepare('UPDATE posts SET content = ?,title=?, modif_date = NOW() WHERE id = ?');
+        $affectedLine = $post->execute(array($content, $title,$id));
 
-        $req = $db->query('UPDATE posts SET title = :title, content = :content, creation_date = :creation_date, modif_date = :modif_date WHERE id = :id');
-
-        $req->bindValue(':title', $post->getTitle(), PDO::PARAM_INT);
-        $req->bindValue(':content', $post->getContent(), PDO::PARAM_INT);
-        $req->bindValue(':creation_date', $post->getCreationDate(), PDO::PARAM_INT);
-        $req->bindValue(':modif_date', $post->getModifDate(), PDO::PARAM_INT);
-        $req->bindValue(':id', $post->getId(), PDO::PARAM_INT);
-
-        $req->execute();
-
-
+        return $affectedLine;
     }
 
     /** permet de supprimer un épisode */
-    public function delete($postId)
-
+    public function deletePost($id)
     {
 
         $db = $this->dbConnect();
 
-        $req = $db->prepare('DELETE FROM posts WHERE id = :id LIMIT 1');
+        $req = $db->prepare('DELETE FROM posts WHERE id = ?');
 
-        $req->bindValue(':id', $postId->getId(), PDO::PARAM_INT);
-
-        $req->execute();
-
+        $req->execute(array($id));
     }
 
 }
+
+
