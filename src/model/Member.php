@@ -12,20 +12,25 @@ namespace Blog\Model;
 class Member
 {
     private $id;
-    private $login;
-    private $pass_md5;
+    private $pseudo;
+    private $pass;
+    private $email;
 
     function __construct($memberData) {
         if (isset($memberData['id'])){
             $this->id = $memberData['id'];
         }
 
-        if (isset($memberData['login'])){
-            $this->login = $memberData['login'];
+        if (isset($memberData['pseudo'])){
+            $this->pseudo = $memberData['pseudo'];
         }
 
-        if (isset($memberData['pass_md5'])){
-            $this->pass_md5 = $memberData['pass_md5'];
+        if (isset($memberData['pass'])){
+            $this->pass = $memberData['pass'];
+        }
+
+        if (isset($memberData['email'])){
+            $this->email = $memberData['email'];
         }
 
   }
@@ -38,16 +43,20 @@ class Member
         return $this->id;
     }
 
-    public function getLogin()
+    public function getPseudo()
     {
-        return $this->login;
+        return $this->pseudo;
     }
 
-    public function getPassMd5()
+    public function getPass()
     {
-        return $this->pass_md5;
+        return $this->pass;
     }
 
+    public function getEmail()
+    {
+        return $this->email;
+    }
     // SETTERS //
 
     public function setId($id)
@@ -55,14 +64,19 @@ class Member
         $this->id = $id;
     }
 
-    public function setLogin($login)
+    public function setPseudo($pseudo)
     {
-        $this->login = $login;
+        $this->pseudo = $pseudo;
     }
 
-    public function setPassMd5($pass_md5)
+    public function setPass($pass)
     {
-        $this->pass_md5 = $pass_md5;
+        $this->pass = $pass;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }
 

@@ -62,6 +62,14 @@ try {
          * ! ADMIN PART !
          *********************************************************************************/
 
+        elseif ($_GET['action'] == 'displayInscription') {
+            $backendController->displayAdminInscription($twig);
+        }
+
+        elseif ($_GET['action'] == 'displayConnection') {
+            $backendController->displayAdminConnection($twig);
+        }
+
         elseif ($_GET['action'] == 'displayPanelAdmin') {
             $backendController->displayAdminPanel($twig);
 
@@ -122,6 +130,70 @@ try {
                     throw new Exception('2 Tous les champs ne sont pas remplis !');
                 }
         }
+
+        /**test inscription*/
+
+        if(isset($_POST['forminscription']))
+        {
+            $pseudo = htmlspecialchars($_POST['pseudo']);
+            $mail = htmlspecialchars($_POST['mail']);
+            $mail2 = htmlspecialchars($_POST['mail2']);
+            $mdp = sha1($_POST['mdp']);
+            $mdp2 = sha1($_POST['mdp2']);
+
+            if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['mdp'])
+                AND !empty($_POST['mdp2'])){
+
+                $pseudolength = strlen($pseudo);
+                if($pseudolength <= 255)
+                {
+
+                    if($mail == $mail2) {
+                        if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+
+                            if ($mdp == $mdp2) {
+                                $backendController->inscription($_POST['pseudo'], $_POST['mdp'], $_POST['mail']);
+                            } else {
+                                throw new Exception('Vos mots de passe ne correspondent pas!');
+                            }
+                        } else {
+                            throw new Exception('Votre adresse mail est invalide!');
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception('Vos adresse mail ne correspondent pas!');
+                    }
+                }
+                else
+                {
+                    throw new Exception('Votre pseudo ne doit pas dépasser 255 caractères!');
+                }
+
+            }
+            else
+            {
+                throw new Exception( "Tous les champs ne sont pas complétés!");
+            }
+        }
+
+        /**test connection*/
+
+        if(isset($_POST['formconnect']))
+        {
+            $mailconnect = htmlspecialchars($_POST['mailconnect']);
+            $mdpconnect = sha1($_POST['mdpconnect']);
+            if(!empty($mailconnect) AND !empty($mdpconnect))
+            {
+                $backendController->reqUser($_POST['mailconnect'], $_POST['mdpconnect']);
+            }
+
+            else
+            {
+                throw new Exception( "Tous les champs doivent être complétés!");
+            }
+        }
+
         /********************************************************************************
          * ! END ADMIN PART !
          *********************************************************************************/
