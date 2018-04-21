@@ -133,17 +133,15 @@ try {
 
         /**test inscription*/
 
-        if(isset($_POST['forminscription']))
+        if($_GET['action'] == 'forminscription')
         {
-            $pseudo = htmlspecialchars($_POST['pseudo']);
-            $mail = htmlspecialchars($_POST['mail']);
-            $mail2 = htmlspecialchars($_POST['mail2']);
+            $pseudo = $_POST['pseudo'];
+            $mail = $_POST['mail'];
+            $mail2 = $_POST['mail2'];
             $mdp = sha1($_POST['mdp']);
             $mdp2 = sha1($_POST['mdp2']);
 
-            if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['mdp'])
-                AND !empty($_POST['mdp2'])){
-
+            if(!empty($pseudo) AND !empty($mail) AND !empty($mail2) AND !empty($mdp) AND !empty($mdp2)){
                 $pseudolength = strlen($pseudo);
                 if($pseudolength <= 255)
                 {
@@ -152,7 +150,7 @@ try {
                         if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
                             if ($mdp == $mdp2) {
-                                $backendController->inscription($_POST['pseudo'], $_POST['mdp'], $_POST['mail']);
+                                $backendController->inscription($pseudo, $mdp, $mail);
                             } else {
                                 throw new Exception('Vos mots de passe ne correspondent pas!');
                             }
