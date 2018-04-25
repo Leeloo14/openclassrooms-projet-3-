@@ -77,44 +77,41 @@ class BackendController
         echo $template->render('admin-comment-view.html.twig', array('comments' => $comments));
     }
 
-/**00000000000000000000000000000000000000000000000000000000000000000*/
+    /**00000000000000000000000000000000000000000000000000000000000000000*/
     function inscription($pseudo, $pass, $email)
 
 
-        {
+    {
 
-            $affectedLines = $this->memberDao->createMember($pseudo, $pass, $email);
+        $affectedLines = $this->memberDao->createMember($pseudo, $pass, $email);
 
-            if ($affectedLines === false) {
-                throw new \Exception('Tous les champs ne sont pas complétés');
-            } else {
-                echo "votre comptre à bien été crée";
-                header('location: index.php');
-            }
+        if ($affectedLines === false) {
+            throw new \Exception('Tous les champs ne sont pas complétés');
+        } else {
+            echo "votre comptre à bien été crée";
+            header('location: index.php');
         }
+    }
+
+
 
     function reqUser ($mailconnect, $mdpconnect)
     {
 
-        $requser=$this->memberDao->checkUser($mailconnect, $mdpconnect);
+        $userData = $this->memberDao->getUser($mailconnect, $mdpconnect);
 
-        if($requser == 1)
-        {
-            $userinfo = $requser->fetch();
-            $_SESSION['id'] = $userinfo['id'];
-            $_SESSION['pseudo'] = $userinfo['pseudo'];
-            $_SESSION['mail'] = $userinfo['mail'];
-
+        if ($mdpconnect == $userData['pass'] && $mailconnect == $userData['email']){
+            $_SESSION['id'] = $userData['id'];
+            $_SESSION['pseudo'] = $userData['pseudo'];
+            $_SESSION['mail'] = $userData['email'];
+        }else{
+            unset($_SESSION);
+            throw new \Exception('mauvais email et/ou mot de passe!');
         }
-        else
-            {
-                throw new \Exception('mauvais email et/ou mot de passe!');
-        }
-
-
     }
 
-/**000000000000000000000000000000000000000000000000000000000000000000000000*/
+
+    /**000000000000000000000000000000000000000000000000000000000000000000000000*/
 
 
 
@@ -163,8 +160,3 @@ class BackendController
 
 
 }
-
-
-
-
-

@@ -40,7 +40,7 @@ class FrontendController
         $affectedLines = $this->commentDao->createComment($postId, $author, $comment);
 
         if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le commentaire !');
+            throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
             header('Location: index.php?action=post&id=' . $postId);
         }
@@ -63,7 +63,7 @@ class FrontendController
         $affectedLines = $this->commentDao->signalComment($IdComment, $upComment);
 
         if ($affectedLines === false) {
-            throw new Exception('Impossible de signaler le commentaire !');
+            throw new \Exception('Impossible de signaler le commentaire !');
         } else {
             header('Location: index.php?action=post&id=' . $postId);
         }

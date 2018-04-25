@@ -16,17 +16,23 @@
             <h3>
 
                 <p>
+                <div class="mb-2">
                     Auteur du commentaire : {{ comment.author|escape }}
-                    <br>
+                </div>
+                <div class="mb-2">
                     Contenu du commentaire : {{ comment.comment }}
-                    <br>
+                </div>
+
+                <div>
                     Motif du signalement : {{ comment.signalement }}
+                </div>
+
                 </p>
 
             </h3>
 
             <p>
-                <em><a href="index.php?action=deleteById&amp;idComment={{ comment.id }}">supprimer le commentaire</a></em>
+                <em><a class="btn btn-danger" href="index.php?action=deleteById&amp;idComment={{ comment.id }}">supprimer le commentaire</a></em>
             </p>
 
         {% endfor %}

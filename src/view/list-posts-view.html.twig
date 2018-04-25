@@ -1,10 +1,13 @@
 {% extends "template.html.twig" %}
 
 {% block head %}
+
     <title>Liste des articles publiés</title>
+
 {% endblock %}
 
-{% block body %}
+{% block body  %}
+
     <h1>Bienvenue sur le blog de Jean Forteroche</h1>
     <p>Derniers épisodes publiés :</p>
 
@@ -18,15 +21,22 @@
             </h3>
 
             <p>
-                <em><a href="index.php?action=post&amp;id={{ post.id }}">Lire l'épisode</a></em>
+                <em><a class="btn btn-info" href="index.php?action=post&amp;id={{ post.id }}">Lire l'épisode</a></em>
             </p>
 
         </div>
 
 
     {% endfor %}
-        <a href="index.php?action=displayInscription">inscription</a>
-        <br>
-        <a href="index.php?action=displayConnection">Connection à l'interface d'administration</a>
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+    <a href="index.php?action=displayInscription" class="mb-2">inscription</a>
+
+    <a href="index.php?action=displayConnection">Connection à l'interface d'administration</a>
 
 {% endblock %}

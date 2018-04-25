@@ -1,4 +1,4 @@
-{% extends "template-2.html.twig" %}
+{% extends "template.html.twig" %}
 
 {% block head %}
     <h1>Article et commentaires</h1>
@@ -33,19 +33,23 @@
             <label for="comment">Commentaire</label><br />
             <textarea id="comment" name="comment"></textarea>
         </div>
-
+    <br>
         <div>
-            <input type="submit" />
+            <input class="btn btn-success" type="submit" />
         </div>
 
     </form>
 
-
+    <div>
 {% for comment in comments %}
 
-<p> {{ comment.author }} le {{ comment.commentDate|date("d/m/Y h:m") }}
+    <p> {{ comment.author }} le {{ comment.commentDate|date("d/m/Y h:m") }}</p>
 
-    <a href="index.php?action=signalEditComment&amp;id={{ post.id }}&amp;idComment={{ comment.id }}">signaler </a>
     <p>{{ comment.comment }}</p>
+</div>
+    <p><a class="btn btn-warning" href="index.php?action=signalEditComment&amp;id={{ post.id }}&amp;idComment={{ comment.id }}">signaler </a></p>
+
+
 {% endfor %}
+
 {% endblock %}

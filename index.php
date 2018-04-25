@@ -124,11 +124,11 @@ try {
             }
 
         } elseif ($_GET['action'] == 'createPost') {
-                if (!empty($_GET['title']) && !empty($_GET['content'])) {
-                    $backendController->addPost($_GET['title'], $_GET['content'], $twig);
-                } else {
-                    throw new Exception('2 Tous les champs ne sont pas remplis !');
-                }
+            if (!empty($_GET['title']) && !empty($_GET['content'])) {
+                $backendController->addPost($_GET['title'], $_GET['content'], $twig);
+            } else {
+                throw new Exception('2 Tous les champs ne sont pas remplis !');
+            }
         }
 
         /**test inscription*/
@@ -179,18 +179,24 @@ try {
 
         if(isset($_POST['formconnect']))
         {
-            $mailconnect = htmlspecialchars($_POST['mailconnect']);
+            $mailconnect = $_POST['mailconnect'];
             $mdpconnect = sha1($_POST['mdpconnect']);
+
             if(!empty($mailconnect) AND !empty($mdpconnect))
             {
-                $backendController->reqUser($_POST['mailconnect'], $_POST['mdpconnect']);
+                $backendController->reqUser($_POST['mailconnect'], sha1($_POST['mdpconnect']));
             }
-
             else
             {
                 throw new Exception( "Tous les champs doivent être complétés!");
             }
+
+            if( isset($_SESSION['pseudo']) ) {
+                $backendController->displayAdminPanel($twig);
+            }
+
         }
+
 
         /********************************************************************************
          * ! END ADMIN PART !
@@ -202,6 +208,3 @@ try {
 } catch (Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
 }
-
-
-

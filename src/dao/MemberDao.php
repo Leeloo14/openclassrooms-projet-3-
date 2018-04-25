@@ -20,17 +20,16 @@ class MemberDao extends BaseDao
 
     }
 
-    public function checkUser($mailconnect, $mdpconnect)
 
-    {
+
+
+
+    public function getUser($mailconnect, $mdpconnect){
         $db = $this->dbConnect();
-        $requser = $db->prepare('SELECT * FROM member WHERE email = ? AND pass = ? ');
-        $requser->execute(array($mailconnect, $mdpconnect));
-
-        return ($requser->rowcount() == 1);
-
+        $requser = $db->prepare('SELECT * FROM member WHERE email = ' . $this->Q($mailconnect) . ' AND pass = ' . $this->Q($mdpconnect));
+        $requser->execute();
+        return $requser->fetch();
     }
 
 
 }
-
