@@ -22,7 +22,6 @@ class CommentDao extends BaseDao
     }
 
     /** revoie les commentaires liés au post suivant son id */
-
     public function getPostComments($postId)
     {
         $db = $this->dbConnect();
