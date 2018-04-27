@@ -9,30 +9,32 @@
     {% block head %}{% endblock %}
 </head>
 
-<body>
+<body class="wallpaper" background="public/img/alaska.jpg">
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-info">
+<nav class="navbar navbar-expand-lg navbar-light bg-info ">
 
-    <a class="navbar-brand textwhite" href="index.php">Bienvenue sur le blog de Jean Forteroche</a>
+    <a class="navbar-brand textwhite " href="index.php">Bienvenue sur le blog de Jean Forteroche</a>
 
 
     <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
 
         <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            <a class="nav-link dropdown-toggle textwhite " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                aria-haspopup="true" aria-expanded="false">
                 Episodes
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="index.php?action=post&amp;id=1">Episode 1 : Découverte</a>
-                <a class="dropdown-item" href="index.php?action=post&amp;id=2">Episode 2 : Terre hostile</a>
-                <a class="dropdown-item" href="index.php?action=post&amp;id=3">Episode 3 : L'appel de la nature</a>
+                {% for post in posts %}
+                <a class="dropdown-item" href="index.php?action=post&amp;id={{ post.id }}">{{ post.title|escape }}</a>
+
+                {% endfor %}
             </div>
         </div>
 
     </div>
+
 </nav>
 
 {% block body %}{% endblock %}
@@ -46,14 +48,23 @@
         integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
         crossorigin="anonymous"></script>
 
-<footer class="page-footer font-small bg-info pt-4 mt-4">
 
-    <!--Footer Links-->
-    <div class="container-fluid text-center ">
+
+
+
+
+
+<footer class="page-footer fixed-bottom ">
+
+    <div class="container-fluid  text-center textblack mb-2">
 
         {% block footer %}{% endblock %}
-        <!--Copyright-->
-        <div class="footer-copyright py-3 text-center">
+
+
+
+            <a href="index.php?action=displayConnection" class="textblack ">Espace administration</a>
+
+        <div class="footer-copyright ">
             © 2018 Copyright:
             <a> Anne Gasté </a>
         </div>

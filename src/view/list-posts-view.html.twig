@@ -2,41 +2,21 @@
 
 {% block head %}
 
-    <title>Liste des articles publiés</title>
+    <title>accueil</title>
 
 {% endblock %}
 
 {% block body  %}
-    <div class="mt-3 ml-4 ">
-    <p>Derniers épisodes publiés :</p>
-    </div>
-    {% for post in posts %}
-
-        <div class="container" >
-
-            <h3>
-                {{ post.title|escape }}
-                <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
-            </h3>
-
-            <p>
-                <em><a class="btn btn-info" href="index.php?action=post&amp;id={{ post.id }}">Lire l'épisode</a></em>
-            </p>
-
-        </div>
 
 
-    {% endfor %}
+<div class="text-center pt-5">
+    <h2><strong>Billet simple pour l'Alaska</strong></h2>
+</div>
 
 
 
 {% endblock %}
 
 {% block footer %}
-    <div class="container" >
-    <a href="index.php?action=displayInscription" class="mb-2">inscription</a>
-    <p>
-    <a href="index.php?action=displayConnection">Connection à l'interface d'administration</a>
-    </p>
-    </div>
+
 {% endblock %}

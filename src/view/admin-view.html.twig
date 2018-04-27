@@ -1,16 +1,16 @@
-{% extends "template.html.twig" %}
+{% extends "template-2.html.twig" %}
 
 {% block head %}
     <meta charset="utf-8"/>
-    <title> administration </title>
+    <title>Bienvenue dans l'interface d'administration du site</title>
 {% endblock %}
 
 {% block body %}
 
-    <ul>
-        <li><a href="index.php?action=displayCommentAdmin">acceder a l'interface de gestion des commentaires</a></li>
-        <li><a href="index.php?action=displayPostAdmin">acceder a l'interface de gestion des épisodes</a></li>
-    </ul>
+    <div class="ml-2 mt-2" align="center">
+        <a class="form-control w-25 mb-2" href="index.php?action=displayCommentAdmin">Acceder à l'interface de gestion des commentaires</a>
+        <a class="form-control w-25" href="index.php?action=displayPostAdmin">Acceder à l'interface de gestion des épisodes</a>
+    </div>
 
 {% endblock %}
 

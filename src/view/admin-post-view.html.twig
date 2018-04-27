@@ -1,4 +1,4 @@
-{% extends "template.html.twig" %}
+{% extends "template-2.html.twig" %}
 
 {% block head %}
     <meta charset="utf-8"/>
@@ -7,28 +7,52 @@
 
 {% block body %}
 
-    <h2>liste des épisodes publiés</h2>
-
-    {% for post in posts %}
-
-        <div class="news">
-
-            <h3>
-                {{ post.title|escape }}
-                <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
-            </h3>
-
-            <p>
-                <em><a href="index.php?action=editPost&amp;id={{ post.id }}">Modifier l'épisode</a>--<em><a href="index.php?action=deletePost&amp;idPost={{ post.id }}">supprimer l'episode</a></em> </em>
-            </p>
-
-        </div>
+    <div class="container">
+        <h2>liste des épisodes publiés</h2>
 
 
-    {% endfor %}
 
-    <ul>
-        <li><a href="index.php?action=displayNewPostAdmin">créer un nouvel épisode</a></li>
-    </ul>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Titre</th>
+                <th scope="col">Date de création</th>
+                <th scope="col">Modifier l'épisode</th>
+                <th scope="col">Supprimer l'épisode</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td> {{ post.title|escape }}</td>
+                    <td>le {{ post.creationDate|date("d/m/Y h:m") }}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger active" </button>
+                        <a class="textwhite" href="index.php?action=editPost&amp;id={{ post.id }}">Modifier</a>
+                    </td>
+                    <td>
+
+
+                        <button type="button" class="btn btn-danger active" </button>
+                        <a class="textwhite" href="index.php?action=deletePost&amp;idPost={{ post.id }}">Supprimer</>
+
+
+
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+
+
+
+
+
+
 
 {% endblock %}

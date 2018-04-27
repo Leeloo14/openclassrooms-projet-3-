@@ -1,55 +1,87 @@
 {% extends "template.html.twig" %}
 
 {% block head %}
-    <h1>Article et commentaires</h1>
+    <title>Article et commentaires</title>
 {% endblock %}
 
 {% block body %}
 
-    <p><a href="index.php" >Retour à la liste des billets</a></p>
+    <div class="ml-2 mt-3 ">
+        <p><a class="textwhite" href="index.php">Retour à la liste des billets</a></p>
+    </div>
+
+    <div class="container ">
+
+        <h3>
+            {{ post.title|escape }}
+            <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
+        </h3>
+
+        <p>
+            {{ post.content }}
+        </p>
+
+
+        <div class="container">
+            <h3>Ajouter un commentaire</h3>
+
+            <form action="index.php?action=addComment&amp;id={{ post.id }}" method="post">
+
+                <div>
+                    <label for="author">Auteur</label><br/>
+                    <input type="text" id="author" name="author"/>
+                </div>
+
+                <div>
+                    <label for="comment">Commentaire</label><br/>
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+                <br>
+                <div>
+                    <input type="submit"/>
+                </div>
+
+            </form>
+        </div>
+
 
         <div class="container">
 
-            <h3>
-                {{ post.title|escape }}
-                <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
-            </h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Auteur de commentaire</th>
+                    <th scope="col">contenu du commentaire</th>
+                    <th scope="col">Signaler le commentaire</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for comment in comments %}
+                    <tr>
+                        <td>le {{ comment.commentDate|date("d/m/Y h:m") }}</td>
+                        <td>{{ comment.author|escape }}</td>
+                        <td>{{ comment.comment }}</td>
+                        <td>{{ comment.signalement }}</td>
+                        <td>
 
-                <p>
-                    {{ post.content }}
-                </p>
+
+                            <button type="button" class="btn btn-warning active"</button>
+                            <a class=" textwhite"
+                               href="index.php?action=signalEditComment&amp;id={{ post.id }}&amp;idComment={{ comment.id }}">signaler </a>
+
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
         </div>
 
-            <h2>Commentaires</h2>
 
-    <form action="index.php?action=addComment&amp;id={{ post.id }}" method="post">
-
-        <div>
-            <label for="author">Auteur</label><br />
-            <input type="text" id="author" name="author" />
-        </div>
-
-        <div>
-            <label for="comment">Commentaire</label><br />
-            <textarea id="comment" name="comment"></textarea>
-        </div>
-    <br>
-        <div>
-            <input class="btn btn-success" type="submit" />
-        </div>
-
-    </form>
-
-    <div>
-{% for comment in comments %}
-
-    <p> {{ comment.author }} le {{ comment.commentDate|date("d/m/Y h:m") }}</p>
-
-    <p>{{ comment.comment }}</p>
-</div>
-    <p><a class="btn btn-warning" href="index.php?action=signalEditComment&amp;id={{ post.id }}&amp;idComment={{ comment.id }}">signaler </a></p>
-
-
-{% endfor %}
-
+    </div>
+{% endblock %}
+{% block footer %}
 {% endblock %}
