@@ -18,7 +18,7 @@
         </h3>
 
         <p>
-            {{ post.content }}
+            {{ post.content|raw }}
         </p>
 
 
@@ -38,7 +38,7 @@
                 </div>
                 <br>
                 <div>
-                    <input type="submit"/>
+                    <input class="btn btn-success" type="submit" value="poster le commentaire"/>
                 </div>
 
             </form>
@@ -62,7 +62,6 @@
                         <td>le {{ comment.commentDate|date("d/m/Y h:m") }}</td>
                         <td>{{ comment.author|escape }}</td>
                         <td>{{ comment.comment }}</td>
-                        <td>{{ comment.signalement }}</td>
                         <td>
 
 

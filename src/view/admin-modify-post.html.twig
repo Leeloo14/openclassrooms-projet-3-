@@ -11,7 +11,7 @@
 <div class="container">
     <p><h4>Vous souhaitez modifier l'épisode suivant :</h4></p>
 
-    <form action="index.php">
+    <form action="index.php" method="post">
         <div>
             <input type="hidden" id="id" name="id" value="{{ post.id }}"/>
             <input type="hidden" id="action" name="action" value="replacePost" />
@@ -25,7 +25,9 @@
             <textarea id="content" name="content" >{{ post.content }}</textarea>
         </div>
         <div>
-            <input type="submit" value="valider"/>
+
+            <input class="btn btn-success" type="submit" value="valider"/>
+
         </div>
     </form>
 </div>

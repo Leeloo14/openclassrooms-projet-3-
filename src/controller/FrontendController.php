@@ -28,10 +28,11 @@ class FrontendController
     /** renvoi un épisode */
     function post($template)
     {
+        $posts = $this->postDao->getAllPosts();
         $post = $this->postDao->getPostById($_GET['id']);
         $comments = $this->commentDao->getPostComments($_GET['id']);
 
-        echo $template->render('post-view.html.twig', array('comments' => $comments, 'post' => $post));
+        echo $template->render('post-view.html.twig', array('comments' => $comments, 'post' => $post, 'posts' => $posts));
     }
 
     /** permet d'ajouter un nouveau commentaire */

@@ -110,10 +110,10 @@ try {
                 throw new Exception('impossible d afficher l episode');
             }
 
-        }elseif ($_GET['action'] == 'replacePost') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (!empty($_GET['title']) && !empty($_GET['id'])) {
-                    $backendController->replacePost($_GET['id'], $_GET['content'], $_GET['title'], $twig);
+        }elseif ($_POST['action'] == 'replacePost') {
+            if (isset($_POST['id']) && $_POST['id'] > 0) {
+                if (!empty($_POST['title']) && !empty($_POST['id'])) {
+                    $backendController->replacePost($_POST['id'], $_POST['content'], $_POST['title'], $twig);
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');

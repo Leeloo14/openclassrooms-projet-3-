@@ -1,78 +1,44 @@
-{% extends "template.html.twig" %}
+{% extends "template-2.html.twig" %}
 
 {% block head %}
-    <h1>Article et commentaires</h1>
+    <title>Signalement</title>
 {% endblock %}
 
 {% block body %}
 
-    <div class="container">
     <p><a href="index.php">Retour à la liste des billets</a></p>
 
-        <div class="news">
+    <div class="container">
 
-            <h3>
-                {{ post.title|escape }}
-                <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
-            </h3>
+        <h3>
+            {{ post.title|escape }}
+            <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
+        </h3>
 
-            <p>
-                {{ post.content }}
-            </p>
-
-        </div>
-
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Auteur de commentaire</th>
-                <th scope="col">contenu du commentaire</th>
-                <th scope="col">Signaler le commentaire</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for comment in comments %}
-            {% if currentCommentId==comment.id %}
-                <tr>
-                    <td>le {{ comment.commentDate|date("d/m/Y h:m") }}</td>
-                    <td>{{ comment.author|escape }}</td>
-                    <td>{{ comment.comment }}</td>
-                    <td>{{ comment.signalement }}</td>
-                    <td>
+        <p>
+            {{ post.content }}
+        </p>
 
 
-                        <button type="button" class="btn btn-warning active"</button>
-                        <a class=" textwhite"
-                           href="index.php?action=signalEditComment&amp;id={{ post.id }}&amp;idComment={{ comment.id }}">signaler </a>
+<div class="container">
 
+    <h2>Commentaires</h2>
 
-                    </td>
-                </tr>
+    {% for comment in comments %}
 
-            </tbody>
-        </table>
+        {% if currentCommentId==comment.id %}
 
+            <p><h4>Vous souhaitez signaler le commentaire suivant :</h4></p>
 
-
-
-
-
+            <p>{{ comment.author }} le {{ comment.commentDate|date("d/m/Y h:m") }}</p>
+            <p>{{ comment.comment }}</p>
 
             <p><h4>Merci d'indiquer le motif du signalement :</h4></p>
 
             <form action="index.php?action=signalComment&id={{ post.id }} &idComment= {{ comment.id }}" method="post">
                 <textarea id="uComment" name="uComment" autofocus="autofocus">{{ comment.signalement }}</textarea>
-
-                    
-                    <button type="button" class="btn btn-warning active"</button>
-                    <a class=" textwhite"
-                       href="index.php?action=post&amp;id= {{ post.id }}">signaler </a>
-
-
-
-
-
+                <input type="submit" value="signaler"/>
+                <a href="index.php?action=post&amp;id= {{ post.id }}"><input type="button" value="abandon"/></a>
             </form>
 
 
@@ -84,5 +50,6 @@
         {% endif %}
 
     {% endfor %}
+</div>
     </div>
 {% endblock %}

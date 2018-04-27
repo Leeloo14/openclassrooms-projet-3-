@@ -27,7 +27,7 @@
                     <td> {{ post.title|escape }}</td>
                     <td>le {{ post.creationDate|date("d/m/Y h:m") }}</td>
                     <td>
-                        <button type="button" class="btn btn-danger active" </button>
+                        <button type="button" class="btn btn-warning active" </button>
                         <a class="textwhite" href="index.php?action=editPost&amp;id={{ post.id }}">Modifier</a>
                     </td>
                     <td>
@@ -43,7 +43,9 @@
             {% endfor %}
             </tbody>
         </table>
-
+        <div class="pb-2">
+        <button type="button" class="btn btn-success active" </button>
+        <a class=" textwhite" href="index.php?action=displayNewPostAdmin">créer un nouvel épisode</a>
 
 
 
