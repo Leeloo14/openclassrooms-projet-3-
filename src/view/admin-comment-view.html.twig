@@ -1,49 +1,39 @@
 {% extends "template-2.html.twig" %}
 
 {% block head %}
-    <meta charset="utf-8"/>
-    <title> administration </title>
+  <meta charset="utf-8"/>
+  <title> administration </title>
 {% endblock %}
 
 {% block body %}
 
-    <div class="container">
-        <h2>liste des commentaires signalés</h2>
+  <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
+    <h2>Liste des commentaires signalés</h2>
+
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Auteur</th>
+        <th scope="col">Contenu</th>
+        <th scope="col">Motif</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for comment in comments %}
+        <tr>
+          <td>{{ comment.author|escape }}</td>
+          <td>{{ comment.comment }}</td>
+          <td>{{ comment.signalement }}</td>
+          <td>
+            <a class="btn btn-danger" href="index.php?action=deleteById&amp;idComment={{ comment.id }}">Supprimer</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
 
 
-
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Auteur du commentaire</th>
-                <th scope="col">Contenu du commentaire</th>
-                <th scope="col">Motif du signalement</th>
-                <th scope="col">Supprimer le commentaire</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for comment in comments %}
-            <tr>
-                <td>{{ comment.author|escape }}</td>
-                <td>{{ comment.comment }}</td>
-                <td>{{ comment.signalement }}</td>
-                <td>
-
-
-                    <button type="button" class="btn btn-danger active" </button>
-                    <a class="textwhite" href="index.php?action=deleteById&amp;idComment={{ comment.id }}">Supprimer</a>
-
-
-
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-
-
-
-
-    </div>
-<div class="regle-3"></div>
+  </div>
+  <div class="regle-3"></div>
 {% endblock %}
