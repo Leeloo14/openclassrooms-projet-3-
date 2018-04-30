@@ -32,7 +32,7 @@ class PostDao extends BaseDao
         return new Post($postData);
     }
 
-   /** permet de récuperer un épisode */
+    /** permet de récuperer un épisode */
     public function getPost($postId)
     {
         $db = $this->dbConnect();
@@ -65,7 +65,7 @@ class PostDao extends BaseDao
     {
         $db = $this->dbConnect();
         $post = $db->prepare('UPDATE posts SET content = ?,title=?, modif_date = NOW() WHERE id = ?');
-        $affectedLine = $post->execute(array($content, $title,$id));
+        $affectedLine = $post->execute(array($content, $title, $id));
 
         return $affectedLine;
     }

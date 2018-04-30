@@ -2,8 +2,6 @@
 
 namespace Blog\Dao;
 
-use Blog\Model\Member;
-
 
 class MemberDao extends BaseDao
 {
@@ -16,15 +14,11 @@ class MemberDao extends BaseDao
         $affectedLines = $member->execute(array($pseudo, $pass, $email));
 
         return $affectedLines;
-
-
     }
 
 
-
-
-
-    public function getUser($mailconnect, $mdpconnect){
+    public function getUser($mailconnect, $mdpconnect)
+    {
         $db = $this->dbConnect();
         $requser = $db->prepare('SELECT * FROM member WHERE email = ' . $this->Q($mailconnect) . ' AND pass = ' . $this->Q($mdpconnect));
         $requser->execute();

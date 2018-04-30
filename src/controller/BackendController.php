@@ -1,10 +1,11 @@
 <?php
 
 namespace Blog\Controller;
-session_start();
+
 use Blog\dao\CommentDao;
 use Blog\Dao\MemberDao;
 use Blog\dao\PostDao;
+use Blog\Services\SessionService;
 
 class BackendController
 {
@@ -12,6 +13,7 @@ class BackendController
     private $commentDao;
     private $postDao;
     private $memberDao;
+    private $sessionService;
 
 
     function __construct()
@@ -19,6 +21,7 @@ class BackendController
         $this->commentDao = new CommentDao();
         $this->postDao = new PostDao();
         $this->memberDao = new MemberDao();
+        $this->sessionService = new SessionService();
 
     }
 
@@ -81,8 +84,6 @@ class BackendController
 
     /**00000000000000000000000000000000000000000000000000000000000000000*/
     function inscription($pseudo, $pass, $email)
-
-
     {
 
         $affectedLines = $this->memberDao->createMember($pseudo, $pass, $email);
@@ -96,17 +97,15 @@ class BackendController
     }
 
 
-
-    function reqUser ($mailconnect, $mdpconnect)
+    function reqUser($mailconnect, $mdpconnect)
     {
 
         $userData = $this->memberDao->getUser($mailconnect, $mdpconnect);
 
-        if ($mdpconnect == $userData['pass'] && $mailconnect == $userData['email']){
-            $_SESSION['id'] = $userData['id'];
-            $_SESSION['pseudo'] = $userData['pseudo'];
-            $_SESSION['mail'] = $userData['email'];
-        }else{
+        if ($mdpconnect == $userData['pass'] && $mailconnect == $userData['email']) {
+            $this->sessionService->storeCookie();
+            header('location: index.php?action=displayPanelAdmin');
+        } else {
             unset($_SESSION);
             throw new \Exception('mauvais email et/ou mot de passe!');
         }
@@ -114,8 +113,6 @@ class BackendController
 
 
     /**000000000000000000000000000000000000000000000000000000000000000000000000*/
-
-
 
 
     /** permet d'afficjer la page d'inscription */
@@ -131,11 +128,14 @@ class BackendController
     }
 
 
-
     /** permet d'afficjer la page principale de l'interface d'administration */
     function displayAdminPanel($template)
     {
-        echo $template->render('admin-view.html.twig');
+        if ($this->sessionService->isClientAuthorized(intval($_COOKIE['blog_p4']))) {
+            echo $template->render('admin-view.html.twig');
+        } else {
+            header('location: index.php?action=displayConnection');
+        }
     }
 
     /** permet d'afficher la page d'administration des commentaires */

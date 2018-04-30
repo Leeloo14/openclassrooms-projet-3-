@@ -12,7 +12,7 @@ class BaseDao
         $server = $dbInfo["host"] ?? 'localhost';
         $username = $dbInfo["user"] ?? 'root';
         $password = $dbInfo["pass"] ?? '';
-        $db = substr($dbInfo["path"], 1) ?? 'blog';
+        $db = $dbInfo["path"] ? substr($dbInfo["path"], 1) : 'blog';
         return new \PDO('mysql:host='. $server .';dbname='. $db .';charset=utf8', $username, $password);
     }
 

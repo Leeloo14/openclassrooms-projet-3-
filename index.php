@@ -11,6 +11,7 @@ $twig->addExtension(new Twig_Extension_Debug());
 //$twig = new Twig_Environment($loader);
 $backendController = new BackendController();
 $frontendController = new FrontendController();
+
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
