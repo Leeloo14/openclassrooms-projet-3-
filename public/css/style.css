@@ -1,73 +1,209 @@
-html, body{
-    font-family: 'Roboto', sans-serif !important;
+
+@media only screen and (max-width: 400px) {
+
+
+    html, body{
+        font-family: 'Roboto', sans-serif !important;
+    }
+
+
+    .textwhite{
+        color: white !important;
+    }
+
+
+    .fake-content{
+        height: 362px;
+    }
+
+    .container{
+        background-color:white !important;
+        margin:4% auto !important;
+        width: 87%;
+
+    }
+
+    .regle-4{
+        height: calc(100vh - 7px - 121px);}
+
+    .regle-3{
+        height: calc(100vh - 343px - 121px);}
+
+    .regle-2{
+        height: calc(100vh - 41px - 121px);}
+
+    .navbar-brand-2{
+        font-size: 16px !important;
+        white-space: normal !important;
+        text-align: center !important;
+    }
+    .navbar-expand-lg .navbar-collapse {
+        display: block !important;
+        text-align: center !important;
+    }
+
+    .text-size{
+        font-size: 18px !important;
+    }
+
+
+.dropdown-menu{
+    left: 33px;
+    text-align: center;
 }
 
-
-.textwhite{
-    color: white !important;
+    .regle-5{
+        height: calc(100vh - 125px - 121px);
+    }
+.div-title{
+    padding-top: 20px;
 }
 
-.container{
-    background-color:white !important;
-    margin:4% auto !important;
+.w-25{
+    width: 84% !important;
 }
 
-.wallpaper{
-    background-attachment: fixed;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    min-height: 620px;
-    background-repeat: no-repeat;
+.mt-9{
+    margin-top: 3rem !important;
 }
 
-.textblack{
-    color: black !important;
+.pt-10{
+    padding-top: 1rem !important;
 }
 
-.fake-content{
-    height: calc(100vh - 82px - 121px);
+.regle{
+    height: calc(100vh - 23px - 121px);
 }
 
+}
+@media only screen and (min-width: 401px) and (max-width: 960px){
+    html, body{
+        font-family: 'Roboto', sans-serif !important;
+    }
+    .regle{
+        height: calc(100vh - 63px - 121px);
+    }
 
 .nav-link{
-    display: block !important;
-    text-align: right !important;
+    font-size: 28px !important;
 }
-.dropdown-menu{
-    left:83%;
-}
-.regle{
-height: calc(100vh - -15px - 121px);
-}
-@media only screen and (max-width: 400px) {
+
+    .textwhite{
+        color: white !important;
+    }
+
+
+    .fake-content{
+        height: 720px;
+    }
+
+    .div-title{
+        margin-top:5%;
+    }
+    .container{
+        background-color:white !important;
+        margin:4% auto !important;
+        width: 87%;
+
+    }
+
 
     .navbar-expand-lg .navbar-collapse {
         display: block !important;
-        text-align: right !important;
+        text-align: center !important;
     }
 
-    .navbar-brand{
-        margin-left: 31%;
+    .text-size{
+        font-size: 31px !important;
+
     }
+
+
+    .dropdown-menu{
+        left: 33px;
+        text-align: center;
+    }
+
+
+
+
+
+
 }
-    @media only screen and (min-width: 401px) and (max-width: 960px){
-        .navbar-expand-lg .navbar-collapse {
-            display: block !important;
-            text-align: right !important;
-        }
-
-        .navbar-brand{
-            margin-left: 31%;
-        }
-
-    }
-
 @media only screen and (min-width: 961px) {
     .navbar-expand-lg .navbar-collapse {
         display: block !important;
         text-align: right !important;
 
     }
+
+    html, body{
+        font-family: 'Roboto', sans-serif !important;
+    }
+
+
+    .textwhite{
+        color: white !important;
+    }
+
+    .container{
+        background-color:white !important;
+        margin:4% auto !important;
+    }
+
+    .wallpaper{
+        background-attachment: fixed;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        min-height: 620px;
+        background-repeat: no-repeat;
+    }
+
+    .textblack{
+        color: black !important;
+    }
+
+    .fake-content{
+        height: calc(100vh - 82px - 121px);
+    }
+
+
+    .m-left{
+        float: right !important;
+    }
+
+    .nav-link{
+        display: block !important;
+        text-align: right !important;
+    }
+    .dropdown-menu{
+        left:-118%;
+    }
+    .regle{
+        height: calc(100vh - -15px - 121px);
+    }
+.regle-2{
+    height: calc(100vh - 138px - 121px);
+}
+    .pt-10{
+        padding-top: 10rem !important;
+    }
+    .mt-9{
+        margin-top: 9.5rem !important;
+
+    }
+    .regle-3{
+        height: 443px ;
+    }
+.regle-4{
+    height: 727px;
+}
+.pt-7{
+    padding-top: 7rem !important;
+}
+.regle-5{
+    height: calc(100vh - 147px - 121px);
+}
 }
