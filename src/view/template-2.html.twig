@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link href="public/css/style.css" rel="stylesheet"/>
-    {% block head %}{% endblock %}
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link href="public/css/responsive-table.css" rel="stylesheet"/>
+  <link href="public/css/style.css" rel="stylesheet"/>
+  {% block head %}{% endblock %}
 </head>
 
 <body class="wallpaper" background="public/img/alaska2.jpg">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-info ">
-
-    <a class="navbar-brand-2 textwhite " href="index.php">Bienvenue dans l'espace d'administration du blog de Jean Forteroche</a>
-
-</nav>
+{% include "nav.html.twig" %}
 
 {% block body %}{% endblock %}
 
@@ -32,23 +29,21 @@
 
 <footer class="page-footer ">
 
-    <div class="container-fluid  text-center textblack mb-2">
+  <div class="container-fluid  text-center textblack mb-2">
 
-        {% block footer %}{% endblock %}
+    {% block footer %}{% endblock %}
 
 
+    <a href="index.php" class="textwhite">Revenir à l'accueil du site</a>
 
-        <a href="index.php" class="textwhite">Revenir à l'accueil du site</a>
-
-        <div class="footer-copyright textwhite ">
-            © 2018 Copyright:
-            <a> Anne Gasté </a>
-        </div>
+    <div class="footer-copyright textwhite ">
+      © 2018 Copyright:
+      <a> Anne Gasté </a>
     </div>
+  </div>
 
 
 </footer>
-
 
 
 </body>

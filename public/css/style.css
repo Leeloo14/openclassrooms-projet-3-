@@ -1,10 +1,19 @@
+html, body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', sans-serif !important;
+}
 
+.container-white {
+    background-color:white;
+}
+
+
+
+
+/*
 @media only screen and (max-width: 400px) {
 
-
-    html, body{
-        font-family: 'Roboto', sans-serif !important;
-    }
 
 
     .textwhite{
@@ -205,4 +214,4 @@
 .regle-5{
     height: calc(100vh - 147px - 121px);
 }
-}
+}*/
