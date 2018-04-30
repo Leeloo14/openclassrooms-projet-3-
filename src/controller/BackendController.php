@@ -57,7 +57,7 @@ class BackendController
     /** permet valider les modifications d'un épisode existant */
     function replacePost($id, $content, $title, $template)
     {
-        var_dump($id);
+
         $postDao = new PostDao();
         $affectedLines = $this->postDao->updatePost($id, $content, $title);
         $posts = $postDao->getAllPosts();
