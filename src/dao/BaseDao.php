@@ -8,8 +8,12 @@ class BaseDao
 {
     protected function dbConnect()
     {
-        $db = new \PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
-        return $db;
+        $dbInfo = parse_url(getenv("CLEARDB_DATABASE_URL"));
+        $server = $dbInfo["host"] ?? 'localhost';
+        $username = $dbInfo["user"] ?? 'root';
+        $password = $dbInfo["pass"] ?? '';
+        $db = $dbInfo["path"] ? substr($dbInfo["path"], 1) : 'blog';
+        return new \PDO('mysql:host='. $server .';dbname='. $db .';charset=utf8', $username, $password);
     }
 
     protected function Q($data){
