@@ -1,0 +1,78 @@
+{% extends "frontend/template.html.twig" %}
+
+{% block head %}
+    <title>Signalement</title>
+{% endblock %}
+
+{% block body %}
+    <div class="global-container">
+        <div class=" ml-2 mt-3">
+            <p><a class="textwhite" href="index.php">Retour à l'acceuil</a></p>
+        </div>
+        <div class="container container-white pt-5 pb-3 rounded">
+
+            <h3>
+                {{ post.title|escape }}
+                <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
+            </h3>
+
+            <p>
+                {{ post.content|raw }}
+            </p>
+
+
+            <div class="container">
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">auteur</th>
+                        <th scope="col">date</th>
+                        <th scope="col">contenu du commentaire</th>
+                        <th scope="col">Motif du signalement</th>
+                        <th scope="col">Signaler le commentaire</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for comment in comments %}
+
+                        {% if currentCommentId==comment.id %}
+
+
+
+                            <tr>
+                                <td>{{ comment.author }}</td>
+                                <td>le {{ comment.commentDate|date("d/m/Y h:m") }}</td>
+                                <td>{{ comment.comment }}</td>
+                                <td>
+                                    <form action="index.php?action=signalComment&id={{ post.id }} &idComment= {{ comment.id }}"
+                                          method="post">
+                                    <textarea id="uComment" name="uComment"
+                                              autofocus="autofocus">{{ comment.signalement }}</textarea>
+                                <td>
+                                    <button type="submit" class="btn btn-warning text-white ">Signaler</button>
+                                    <a href="index.php?action=post&amp;id= {{ post.id }}"></a>
+
+                                    </form>
+
+                                </td>
+                                </td>
+
+                            </tr>
+
+
+                        {% else %}
+
+                            <td>{{ comment.author }}</td>
+                            <td>le {{ comment.commentDate|date("d/m/Y h:m") }}</td>
+                            <td>{{ comment.comment }}</td>
+
+                        {% endif %}
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

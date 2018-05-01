@@ -21,8 +21,7 @@ class FrontendController
     function listPosts($template)
     {
         $posts = $this->postDao->getAllPosts();
-
-        echo $template->render('list-posts-view.html.twig', array('posts' => $posts));
+        echo $template->render('frontend/list-posts-view.html.twig', array('posts' => $posts));
     }
 
     /** renvoi un épisode */
@@ -31,15 +30,13 @@ class FrontendController
         $posts = $this->postDao->getAllPosts();
         $post = $this->postDao->getPostById($_GET['id']);
         $comments = $this->commentDao->getPostComments($_GET['id']);
-
-        echo $template->render('post-view.html.twig', array('comments' => $comments, 'post' => $post, 'posts' => $posts));
+        echo $template->render('frontend/post-view.html.twig', array('comments' => $comments, 'post' => $post, 'posts' => $posts));
     }
 
     /** permet d'ajouter un nouveau commentaire */
     function addComment($postId, $author, $comment)
     {
         $affectedLines = $this->commentDao->createComment($postId, $author, $comment);
-
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter le commentaire !');
         } else {
@@ -52,9 +49,7 @@ class FrontendController
     {
         $post = $this->postDao->getPostById($_GET['id']);
         $comments = $this->commentDao->getPostComments($_GET['id']);
-
-
-        echo $template->render('signal-post-view.html.twig', array('comments' => $comments, 'post' => $post,
+        echo $template->render('frontend/signal-post-view.html.twig', array('comments' => $comments, 'post' => $post,
             'currentCommentId' => $_GET['idComment']));
     }
 
@@ -62,13 +57,10 @@ class FrontendController
     function spamComment($postId, $IdComment, $upComment)
     {
         $affectedLines = $this->commentDao->signalComment($IdComment, $upComment);
-
         if ($affectedLines === false) {
             throw new \Exception('Impossible de signaler le commentaire !');
         } else {
             header('Location: index.php?action=post&id=' . $postId);
         }
     }
-
-
 }

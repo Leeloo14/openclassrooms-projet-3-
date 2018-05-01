@@ -1,4 +1,4 @@
-{% extends "template-2.html.twig" %}
+{% extends "backend/template-2.html.twig" %}
 
 {% block head %}
     <meta charset="utf-8"/>
@@ -6,10 +6,13 @@
 {% endblock %}
 
 {% block body %}
+    <div class="global-container">
+    <div class="ml-2 mt-3">
+        <p><a class="text-white" href="index.php?action=displayPanelAdmin">Retour</a></p>
+    </div>
 
     <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
         <h2>liste des épisodes publiés</h2>
-
 
 
         <table class="table table-hover">
@@ -33,9 +36,8 @@
                     <td>
 
 
-
-                        <a class="btn btn-danger " href="index.php?action=deletePost&amp;idPost={{ post.id }}">Supprimer</a>
-
+                        <a class="btn btn-danger "
+                           href="index.php?action=deletePost&amp;idPost={{ post.id }}">Supprimer</a>
 
 
                     </td>
@@ -45,16 +47,12 @@
         </table>
         <div class="pb-2">
 
-        <a class=" btn btn-success " href="index.php?action=displayNewPostAdmin">créer un nouvel épisode</a>
+            <a class=" btn btn-success " href="index.php?action=displayNewPostAdmin">créer un nouvel épisode</a>
 
+
+        </div>
 
 
     </div>
-
-
-
-
-
-
 
 {% endblock %}

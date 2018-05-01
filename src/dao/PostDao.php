@@ -4,13 +4,10 @@ namespace Blog\Dao;
 
 use Blog\Model\Post;
 
-
 class PostDao extends BaseDao
 {
-
     /** permet de créer un nouvel épisode */
     public function createPost($title, $content)
-
     {
         $db = $this->dbConnect();
         $posts = $db->prepare('INSERT INTO posts(title, content, creation_date) VALUES(?, ?, NOW())');
@@ -22,13 +19,9 @@ class PostDao extends BaseDao
     public function getPostById($id)
     {
         $db = $this->dbConnect();
-
         $req = $db->prepare('SELECT id, title, content, creation_date FROM posts WHERE id = ' . $id);
-
         $req->execute();
-
         $postData = $req->fetch();
-
         return new Post($postData);
     }
 
@@ -38,9 +31,7 @@ class PostDao extends BaseDao
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, title, content, creation_date FROM posts WHERE id =' . $postId);
         $req->execute();
-
         $postData = $req->fetch();
-
         return new Post($postData);
     }
 
@@ -51,9 +42,7 @@ class PostDao extends BaseDao
         $req = $db->prepare('SELECT * FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
         $req->execute();
         $postsDB = $req->fetchAll();
-
         $posts = [];
-
         foreach ($postsDB as $postDB) {
             array_push($posts, new Post($postDB));
         }
@@ -66,21 +55,16 @@ class PostDao extends BaseDao
         $db = $this->dbConnect();
         $post = $db->prepare('UPDATE posts SET content = ?,title=?, modif_date = NOW() WHERE id = ?');
         $affectedLine = $post->execute(array($content, $title, $id));
-
         return $affectedLine;
     }
 
     /** permet de supprimer un épisode */
     public function deletePost($id)
     {
-
         $db = $this->dbConnect();
-
         $req = $db->prepare('DELETE FROM posts WHERE id = ?');
-
         $req->execute(array($id));
     }
-
 }
 
 
