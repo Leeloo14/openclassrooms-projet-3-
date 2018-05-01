@@ -11,7 +11,7 @@ class BaseDao
         $dbInfo = parse_url(getenv("CLEARDB_DATABASE_URL"));
         $server = $dbInfo["host"] ?? 'localhost';
         $username = $dbInfo["user"] ?? 'root';
-        $password = $dbInfo["pass"] ?? 'ixe7yiem';
+        $password = $dbInfo["pass"] ?? '';
         $db = $dbInfo["path"] ? substr($dbInfo["path"], 1) : 'blog';
         return new \PDO('mysql:host='. $server .';dbname='. $db .';charset=utf8', $username, $password);
     }

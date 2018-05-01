@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="regle-4">
-<div class="container">
+
+    <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
     <p><h4>Vous souhaitez modifier l'épisode suivant :</h4></p>
 
     <form action="index.php" method="post">
@@ -18,19 +18,19 @@
             <input type="hidden" id="action" name="action" value="replacePost" />
         </div>
         <div>
-            <label for="title">titre</label><br />
-            <input type="text" id="title" name="title" value="{{ post.title }}" />
+            <label for="title">titre</label>
+            <input type="text" id="title" name="title" class="form-control" value="{{ post.title }}" />
         </div>
         <div>
-            <label for="content">texte</label><br />
+            <label for="content">texte</label>
             <textarea id="content" name="content" >{{ post.content }}</textarea>
         </div>
-        <div>
 
-            <input class="btn btn-success" type="submit" value="valider"/>
 
-        </div>
+        <button class="btn btn-success mt-2" type="submit">Poster</button>
+
+
     </form>
 </div>
-    </div>
+
     {% endblock %}

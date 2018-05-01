@@ -124,6 +124,7 @@ class BackendController
     /** permet d'afficjer la page de connection */
     function displayAdminConnection($template)
     {
+
         echo $template->render('connection.html.twig');
     }
 
@@ -141,23 +142,30 @@ class BackendController
     /** permet d'afficher la page d'administration des commentaires */
     function displayCommentAdmin($template)
     {
+        if ($this->sessionService->isClientAuthorized(intval($_COOKIE['blog_p4']))) {
         $commentDao = new CommentDao();
         $comments = $commentDao->getSignalComments();
 
-        echo $template->render('admin-comment-view.html.twig', array('comments' => $comments));
+
+            echo $template->render('admin-comment-view.html.twig', array('comments' => $comments));
+        }
     }
 
     /** permet d'&fficher la page d'administration des épisodes */
     function displayPostAdmin($template)
     {
-        $posts = $this->postDao->getAllPosts();
-        echo $template->render('admin-post-view.html.twig', array('posts' => $posts));
+        if ($this->sessionService->isClientAuthorized(intval($_COOKIE['blog_p4']))) {
+            $posts = $this->postDao->getAllPosts();
+            echo $template->render('admin-post-view.html.twig', array('posts' => $posts));
+        }
     }
 
     /** permet d'afficher la page d'administration qui permet de créer un nouvel épisode */
     function displayNewPostAdmin($template)
     {
-        echo $template->render('admin-new-post-view.html.twig');
+        if ($this->sessionService->isClientAuthorized(intval($_COOKIE['blog_p4']))) {
+            echo $template->render('admin-new-post-view.html.twig');
+        }
     }
 
 

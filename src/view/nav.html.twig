@@ -1,15 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand text-size" href="index.php">Blog de Jean Forteroche</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="index.php">blog de Jean Forteroche</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            {% for post in posts %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.php?action=post&amp;id={{ post.id }}">{{ post.title|escape }} <span class="sr-only">(current)</span></a>
-                </li>
-            {% endfor %}
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Episodes
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    {% for post in posts %}
+                    <a class="dropdown-item" href="index.php?action=post&amp;id={{ post.id }}">{{ post.title|escape }}</a>
+                    {% endfor %}
+                </div>
+            </li>
         </ul>
     </div>
 </nav>

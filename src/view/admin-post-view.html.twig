@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="regle-4">
-    <div class="container">
+
+    <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
         <h2>liste des épisodes publiés</h2>
 
 
@@ -28,13 +28,13 @@
                     <td>le {{ post.creationDate|date("d/m/Y h:m") }}</td>
                     <td>
 
-                        <a class="btn btn-warning active textwhite" href="index.php?action=editPost&amp;id={{ post.id }}">Modifier</a>
+                        <a class="btn btn-warning  text-white" href="index.php?action=editPost&amp;id={{ post.id }}">Modifier</a>
                     </td>
                     <td>
 
 
 
-                        <a class="btn btn-danger active textwhite" href="index.php?action=deletePost&amp;idPost={{ post.id }}">Supprimer</a>
+                        <a class="btn btn-danger " href="index.php?action=deletePost&amp;idPost={{ post.id }}">Supprimer</a>
 
 
 
@@ -45,14 +45,14 @@
         </table>
         <div class="pb-2">
 
-        <a class=" btn btn-success active textwhite" href="index.php?action=displayNewPostAdmin">créer un nouvel épisode</a>
+        <a class=" btn btn-success " href="index.php?action=displayNewPostAdmin">créer un nouvel épisode</a>
 
 
 
     </div>
 
 
-</div>
+
 
 
 

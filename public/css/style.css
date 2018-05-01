@@ -1,16 +1,35 @@
-html, body{
+html, body {
     height: 100%;
     width: 100%;
     font-family: 'Roboto', sans-serif !important;
 }
 
+
 .container-white {
     background-color:white;
 }
 
+.global-container {
+    margin-bottom: 100px;
+}
 
+.bas{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
 
+}
+/**
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 
+}
 /*
 @media only screen and (max-width: 400px) {
 

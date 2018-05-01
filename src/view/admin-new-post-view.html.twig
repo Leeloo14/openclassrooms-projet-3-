@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block body %}
-    <div class="regle-4">
-<div class="container">
+
+    <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
     <h2>créer un nouvel épisode</h2>
 
 <form action="index.php">
@@ -18,16 +18,16 @@
     </div>
     <div>
         <label for="title">titre</label><br />
-        <input type="text" id="title" name="title" />
+        <input type="text" id="title" name="title" class="form-control" />
     </div>
     <div>
         <label for="content">texte</label><br />
-        <textarea id="content" name="content"></textarea>
+        <textarea id="content" name="content" class="form-control"></textarea>
     </div>
     <div>
-        <input class="btn btn-success" type="submit" value="valider"/>
+        <button class="btn btn-success mt-2" type="submit">Poster</button>
     </div>
 </form>
 </div>
-    </div>
+
 {% endblock %}
