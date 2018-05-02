@@ -1,58 +1,49 @@
 {% extends "backend/template-2.html.twig" %}
 
 {% block head %}
-    <meta charset="utf-8"/>
-    <title> administration </title>
+  <meta charset="utf-8"/>
+  <title> administration </title>
 {% endblock %}
 
 {% block body %}
-    <div class="global-container">
-    <div class="ml-2 mt-3">
-        <p><a class="text-white" href="index.php?action=displayPanelAdmin">Retour</a></p>
-    </div>
+<div class="global-container">
+  <div class="ml-2 mt-3">
+    <p><a class="text-white" href="index.php?action=displayPanelAdmin">Retour</a></p>
+  </div>
 
-    <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
-        <h2>liste des épisodes publiés</h2>
-
-
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Titre</th>
-                <th scope="col">Date de création</th>
-                <th scope="col">Modifier l'épisode</th>
-                <th scope="col">Supprimer l'épisode</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for post in posts %}
-                <tr>
-                    <td> {{ post.title|escape }}</td>
-                    <td>le {{ post.creationDate|date("d/m/Y h:m") }}</td>
-                    <td>
-
-                        <a class="btn btn-warning  text-white" href="index.php?action=editPost&amp;id={{ post.id }}">Modifier</a>
-                    </td>
-                    <td>
+  <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
+    <h2>liste des épisodes publiés</h2>
 
 
-                        <a class="btn btn-danger "
-                           href="index.php?action=deletePost&amp;idPost={{ post.id }}">Supprimer</a>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Date de création</th>
+        <th scope="col">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for post in posts %}
+        <tr>
+          <td> {{ post.title|escape }}</td>
+          <td>le {{ post.creationDate|date("d/m/Y h:m") }}</td>
+          <td>
+            <a class="btn btn-warning  text-white" href="index.php?action=editPost&amp;id={{ post.id }}">Modifier</a>
+            <a class="btn btn-danger" href="index.php?action=deletePost&amp;idPost={{ post.id }}">Supprimer</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <div class="pb-2">
 
-
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <div class="pb-2">
-
-            <a class=" btn btn-success " href="index.php?action=displayNewPostAdmin">créer un nouvel épisode</a>
-
-
-        </div>
+      <a class=" btn btn-success " href="index.php?action=displayNewPostAdmin">Créer un nouvel épisode</a>
 
 
     </div>
 
-{% endblock %}
+
+  </div>
+
+  {% endblock %}

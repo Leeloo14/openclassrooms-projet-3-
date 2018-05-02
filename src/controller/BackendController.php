@@ -84,21 +84,32 @@ class BackendController
             $this->sessionService->storeCookie();
             header('location: index.php?action=displayPanelAdmin');
         } else {
-            unset($_SESSION);
-            throw new \Exception('mauvais email et/ou mot de passe!');
+            $this->sessionService->disconnect();
+            header('location: index.php?action=displayConnection&error=true');
         }
+    }
+
+    function disconnect(){
+        $this->sessionService->disconnect();
+        header('location: index.php?action=displayConnection');
     }
 
     /** permet d'afficher la page de connection */
     function displayAdminConnection($template)
     {
-        echo $template->render('backend/connection.html.twig');
+        if ($this->sessionService->isClientAuthorized()) {
+            header('location: index.php?action=displayPanelAdmin');
+        } else {
+            $hasFormError = isset($_GET['error']) && $_GET["error"];
+            $posts = $this->postDao->getAllPosts();
+            echo $template->render('frontend/connection.html.twig', [ "hasFormError" =>  $hasFormError, "posts" => $posts]);
+        }
     }
 
     /** permet d'afficher la page principale de l'interface d'administration */
     function displayAdminPanel($template)
     {
-        if ($this->sessionService->isClientAuthorized(intval($_COOKIE['blog_p4']))) {
+        if ($this->sessionService->isClientAuthorized()) {
             echo $template->render('backend/admin-view.html.twig');
         } else {
             header('location: index.php?action=displayConnection');
@@ -108,7 +119,7 @@ class BackendController
     /** permet d'afficher la page d'administration des commentaires */
     function displayCommentAdmin($template)
     {
-        if ($this->sessionService->isClientAuthorized(intval($_COOKIE['blog_p4']))) {
+        if ($this->sessionService->isClientAuthorized()) {
         $commentDao = new CommentDao();
         $comments = $commentDao->getSignalComments();
             echo $template->render('backend/admin-comment-view.html.twig', array('comments' => $comments));
@@ -118,7 +129,7 @@ class BackendController
     /** permet d'afficher la page d'administration des épisodes */
     function displayPostAdmin($template)
     {
-        if ($this->sessionService->isClientAuthorized(intval($_COOKIE['blog_p4']))) {
+        if ($this->sessionService->isClientAuthorized()) {
             $posts = $this->postDao->getAllPosts();
             echo $template->render('backend/admin-post-view.html.twig', array('posts' => $posts));
         }
@@ -127,7 +138,7 @@ class BackendController
     /** permet d'afficher la page d'administration qui permet de créer un nouvel épisode */
     function displayNewPostAdmin($template)
     {
-        if ($this->sessionService->isClientAuthorized(intval($_COOKIE['blog_p4']))) {
+        if ($this->sessionService->isClientAuthorized()) {
             echo $template->render('backend/admin-new-post-view.html.twig');
         }
     }

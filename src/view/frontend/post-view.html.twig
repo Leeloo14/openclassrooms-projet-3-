@@ -14,8 +14,8 @@
 
     <h3>
       {{ post.title|escape }}
-      <em>le {{ post.creationDate|date("d/m/Y h:m") }}</em>
     </h3>
+    <span class="font-italic">{{ post.creationDate|date("d/m/Y H:m") }}</span>
 
     <p>
       {{ post.content|raw }}
