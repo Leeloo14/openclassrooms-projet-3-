@@ -22,8 +22,10 @@ html, body {
 .wallpaper {
     background-image: url("../img/alaska.jpg");
     background-attachment: fixed;
+    background-size: cover;
 }
 .wallpaper-2 {
     background-image: url("../img/alaska2.jpg");
     background-attachment: fixed;
+    background-size: cover;
 }
