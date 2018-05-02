@@ -43,7 +43,7 @@ class BackendController
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter l\'episode !');
         }
-        header('location: index.php?action=displayPanelAdmin');
+        header('location: index.php?action=displayPostAdmin');
     }
 
     /** permet de modifier un épisode existant */
@@ -63,7 +63,7 @@ class BackendController
         if ($affectedLines === false) {
             throw new \Exception('Impossible de modifier le post!');
         } else {
-            header('location: index.php?action=displayPanelAdmin');
+            header('location: index.php?action=displayPostAdmin');
         }
     }
 
