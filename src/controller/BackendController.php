@@ -55,7 +55,7 @@ class BackendController
     }
 
     /** permet valider les modifications d'un épisode existant */
-    function replacePost($id, $content, $title, $template)
+    function replacePost($id, $content, $title)
     {
         $postDao = new PostDao();
         $affectedLines = $this->postDao->updatePost($id, $content, $title);
@@ -63,7 +63,7 @@ class BackendController
         if ($affectedLines === false) {
             throw new \Exception('Impossible de modifier le post!');
         } else {
-            echo $template->render('backend/admin-post-view.html.twig', array('posts' => $posts));
+            header('location: index.php?action=displayPanelAdmin');
         }
     }
 
