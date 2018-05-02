@@ -36,14 +36,14 @@ class BackendController
     }
 
     /** permet de créer un nouvel épisode */
-    function addPost($title, $content, $template)
+    function addPost($title, $content)
     {
         $affectedLines = $this->postDao->createPost($title, $content);
         $posts = $this->postDao->getAllPosts();
         if ($affectedLines === false) {
             throw new \Exception('Impossible d\'ajouter l\'episode !');
         }
-        echo $template->render('backend/admin-post-view.html.twig', array('posts' => $posts));
+        header('location: index.php?action=displayPanelAdmin');
     }
 
     /** permet de modifier un épisode existant */
