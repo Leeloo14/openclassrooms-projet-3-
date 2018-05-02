@@ -1,4 +1,4 @@
-{% extends "backend/template-2.html.twig" %}
+{% extends "frontend/template.html.twig" %}
 
 {% block head %}
     <meta charset="utf-8"/>
@@ -14,6 +14,9 @@
             <input type="password" name="mdpconnect" placeholder="Mot de passe" class="form-control"/>
             <button type="submit" name="formconnect" class="btn btn-primary mt-2 mb-2">Se connecter</button>
         </form>
+        {% if hasFormError %}
+            <div class="text-danger">Identifiants incorrects</div>
+        {% endif %}
     </div>
 
 {% endblock %}

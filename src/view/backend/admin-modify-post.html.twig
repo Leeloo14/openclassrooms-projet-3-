@@ -1,40 +1,36 @@
 {% extends "backend/template-2.html.twig" %}
 
 {% block head %}
-    <meta charset="utf-8"/>
-    <title> administration </title>
-    <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
-    <script> tinymce.init({selector: '#content'}); </script>
+  <meta charset="utf-8"/>
+  <title> administration </title>
+  <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
+  <script> tinymce.init({selector: '#content'}); </script>
 {% endblock %}
 
 {% block body %}
 
-    <div class="global-container">
-        <div class="ml-2 mt-3">
-            <p><a class="text-white" href="index.php?action=displayPostAdmin">Retour</a></p>
-        </div>
-        <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
-            <p><h4>Vous souhaitez modifier l'épisode suivant :</h4></p>
-
-            <form action="index.php" method="post">
-                <div>
-                    <input type="hidden" id="id" name="id" value="{{ post.id }}"/>
-                    <input type="hidden" id="action" name="action" value="replacePost"/>
-                </div>
-                <div>
-                    <label for="title">titre</label>
-                    <input type="text" id="title" name="title" class="form-control" value="{{ post.title }}"/>
-                </div>
-                <div>
-                    <label for="content">texte</label>
-                    <textarea id="content" name="content">{{ post.content }}</textarea>
-                </div>
-
-
-                <button class="btn btn-success mt-2" type="submit">Poster</button>
-
-
-            </form>
-        </div>
+  <div class="global-container">
+    <div class="ml-2 mt-3">
+      <p><a class="text-white" href="index.php?action=displayPostAdmin">Retour</a></p>
     </div>
+    <div class="container container-white mt-3 mb-3 rounded pt-2 pb-2">
+      <p><h4>Vous souhaitez modifier l'épisode suivant :</h4></p>
+
+      <form action="index.php" method="post">
+        <div>
+          <input type="hidden" id="id" name="id" value="{{ post.id }}"/>
+          <input type="hidden" id="action" name="action" value="replacePost"/>
+        </div>
+        <div>
+          <label for="title">titre</label>
+          <input type="text" id="title" name="title" class="form-control" value="{{ post.title }}"/>
+        </div>
+        <div>
+          <label for="content">texte</label>
+          <textarea id="content" name="content">{{ post.content }}</textarea>
+        </div>
+        <button class="btn btn-success mt-2" type="submit">Poster</button>
+      </form>
+    </div>
+  </div>
 {% endblock %}
