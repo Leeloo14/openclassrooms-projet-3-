@@ -26,7 +26,7 @@ class PostDao extends BaseDao
     }
 
     /** permet de récuperer un épisode */
-    public function getPost($postId)
+    public function  getPost($postId)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, title, content, creation_date FROM posts WHERE id =' . $postId);
@@ -39,7 +39,7 @@ class PostDao extends BaseDao
     public function getAllPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT * FROM posts ORDER BY creation_date DESC LIMIT 0, 5');
+        $req = $db->prepare('SELECT * FROM posts ORDER BY creation_date LIMIT 0, 5');
         $req->execute();
         $postsDB = $req->fetchAll();
         $posts = [];

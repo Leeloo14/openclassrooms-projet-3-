@@ -7,11 +7,16 @@
 {% endblock %}
 
 {% block body %}
-
+<div class="global-container">
     <div class="container mt-3 mb-3">
         <h2 class="text-center">Billet simple pour l'Alaska</h2>
+        <div class="container text-center">
+        {% for post in posts %}
+            <a class="btn btn-success mt-2" type="submit" class="text-white" href="index.php?action=post&amp;id={{ post.id }}">{{ post.title|escape }}</a>
+        {% endfor %}
+        </div>
     </div>
-
+</div>
 
 
 
